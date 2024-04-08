@@ -10,7 +10,7 @@ $pass = $_POST['password'];
 $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
 // SQL query to check if the provided username exists in the database
-$sql = "SELECT * FROM users WHERE username='$user'";
+$sql = "SELECT * FROM user WHERE username='$user'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
