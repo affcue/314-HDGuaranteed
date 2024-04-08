@@ -59,6 +59,7 @@
             <button type="button">Search</button>
         </div>
         <div class="button-group">
+            Region
             <button type="button">North</button>
             <button type="button">South</button>
             <button type="button">East</button>
@@ -66,6 +67,7 @@
             <button type="button">Central</button>
         </div>
         <div class="button-group">
+            Property Type
             <button type="button">Condo</button>
             <button type="button">Landed</button>
             <button type="button">HDB Flat</button>
