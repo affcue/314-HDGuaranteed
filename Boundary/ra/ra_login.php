@@ -61,7 +61,7 @@
 </style>
 </head>
 <body>
-
+<?php session_start() ?>
 <div class="login-container">
     <h2 style="text-align: center;">Welcome to RA Login</h2>
     <form action="ra_process_login.php" method="POST">
