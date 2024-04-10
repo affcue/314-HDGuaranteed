@@ -13,19 +13,6 @@
         padding: 0;
     }
 
-    .header {
-        background-color: #bbb;
-        color: #333;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .header h1 {
-        margin: 0;
-    }
-
     .buttons {
         display: flex;
         gap: 10px;
@@ -66,15 +53,7 @@
 </style>
 </head>
 <body>
-
-<div class="header">
-    <h1>RA Home</h1>
-    <div class="buttons">
-        <button onclick="window.location.href='find_agent.php'">Find Agent</button>
-        <button onclick="window.location.href='find_listing.php'">Find Listing</button>
-        <button onclick="window.location.href='logout.php'">Logout</button>
-    </div>
-</div>
+<?php include 'header.php'?>
 
 <div class="container">
     <h2 class="title">Welcome to your RA Home</h2>
