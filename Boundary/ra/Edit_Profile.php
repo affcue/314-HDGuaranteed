@@ -10,13 +10,13 @@
 
 <header>
     <!-- Left-aligned 'Edit Profile' button -->
-    <a href="#" class="nav-button left">EditProfile</a>
+    <a href="raHome.php" class="nav-button left">Home</a>
     
     <!-- Right-aligned 'Find Listing', 'Find Agent', and 'Logout' buttons -->
     <div class="nav-buttons right">
-        <a href="#" class="nav-button">Find Listing</a>
-        <a href="#" class="nav-button">Find Agent</a>
-        <a href="#" class="nav-button">Logout</a>
+        <a href="searchAgent.php" class="nav-button">Find Listing</a>
+        <a href="searchListing.php" class="nav-button">Find Agent</a>
+        <a href="logout.php" class="nav-button">Logout</a>
     </div>
 </header>
 
