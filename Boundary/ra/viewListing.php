@@ -39,6 +39,8 @@
     </style>
 </head>
 <body>
+<?php include 'header.php'?>
+
     <div class="container">
         <div class="title">Block 123 Somewhere Street 69 #42-187</div>
         <div class="postal-code">S xxxxxxx | Region</div>

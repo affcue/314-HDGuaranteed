@@ -53,6 +53,8 @@
     </style>
 </head>
 <body>
+<?php include 'header.php'?>
+
     <div class="container">
         <div class="input-group">
             <input type="text" placeholder="Search for...">

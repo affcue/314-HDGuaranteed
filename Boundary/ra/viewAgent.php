@@ -78,6 +78,8 @@
 </head>
 
 <body>
+<?php include 'header.php'?>
+
     <div class="adminmenu-container">
 
         <div class="service-button">
