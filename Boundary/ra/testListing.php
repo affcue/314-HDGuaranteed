@@ -39,4 +39,5 @@ if (mysqli_query($conn, $sql2)) {
 }
 // Close the database connection
 mysqli_close($conn);
+//comment
 ?>
