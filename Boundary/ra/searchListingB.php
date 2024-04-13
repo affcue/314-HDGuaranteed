@@ -85,5 +85,6 @@
     <div class="listing-info">
         <?php include 'searchListingC.php'; ?>
     </div>
+    
 </div>
 
