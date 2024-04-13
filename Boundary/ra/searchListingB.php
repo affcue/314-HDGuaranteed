@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Search</title>
     <style>
-
+        /* Your CSS styles here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -25,7 +25,7 @@
             border: 1px solid #ccc;
             font-size: 16px;
         }
-        button2 {
+        button {
             padding: 10px 20px;
             border: none;
             background-color: #007bff;
@@ -34,14 +34,14 @@
             cursor: pointer;
             font-size: 16px;
         }
-        button2:hover {
+        button:hover {
             background-color: #0056b3;
         }
-        .button2-group {
+        .button-group {
             margin-top: 10px;
             margin-bottom: 20px;
         }
-        .button2-group button {
+        .button-group button {
             margin: 0 5px;
         }
         .listing-info {
@@ -66,10 +66,10 @@
     <div class="input-group">
         <form method="POST" action="">
             <input type="text" name="search" placeholder="Search for...">
-            <button2 type="submit" name="submit">Search</button>
+            <button type="submit" name="submit">Search</button>
         </form>
     </div>
-    <div class="button2-group">
+    <div class="button-group">
         <form method="POST" action="">
             <input type="radio" name="region" value="north">North
             <input type="radio" name="region" value="south">South
@@ -79,10 +79,11 @@
             <input type="radio" name="property_type" value="Condominium">Condominium
             <input type="radio" name="property_type" value="Landed Property">Landed Property
             <input type="radio" name="property_type" value="HDB Flat">HDB Flat
-            <button2 type="submit">Apply Filters</button>
+            <button type="submit">Apply Filters</button>
         </form>
     </div>
     <div class="listing-info">
         <?php include 'searchListingC.php'; ?>
     </div>
 </div>
+
