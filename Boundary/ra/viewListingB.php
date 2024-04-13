@@ -1,7 +1,9 @@
 <?php
-include ("header.php");
-?>
+include("header.php");
 
+class viewListingB {
+    public function render() {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,3 +54,8 @@ include ("header.php");
     </div>
 </body>
 </html>
+<?php
+    }
+}
+
+?>
