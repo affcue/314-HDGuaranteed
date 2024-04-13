@@ -1,3 +1,4 @@
+//sequential code
 <?php
 include 'header.php'
 ?>
