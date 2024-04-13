@@ -1,21 +1,41 @@
 <?php
-// Include the entity file
-include 'searchListingE.php';
 
-// Create instance of ListingEntity
-$listingEntity = new ListingEntity();
+include_once 'config.php';
 
-// Perform search if form is submitted
-if(isset($_POST['submit']) || isset($_POST['region']) || isset($_POST['property_type'])) {
-    // Get search parameters
-    $search = isset($_POST['search']) ? $_POST['search'] : "";
-    $region = isset($_POST['region']) ? $_POST['region'] : "";
-    $propertyType = isset($_POST['property_type']) ? $_POST['property_type'] : "";
+class searchListingC {
+    private $entity;
+    private $boundary;
 
-    // Call the method to search listings
-    $listings = $listingEntity->searchListings($search, $region, $propertyType);
+    public function __construct(searchListingE $entity, searchListingB $boundary) {
+        $this->entity = $entity;
+        $this->boundary = $boundary;
+    }
 
-    // Display the listings
-    echo $listingEntity->displayListings($listings);
+    public function processSearch() {
+        // Get form data from Boundary
+        $formData = $this->boundary->getFormData();
+
+        // Extract search parameters
+        $searchTerm = isset($formData['search']) ? $formData['search'] : "";
+        $region = isset($formData['region']) ? $formData['region'] : "";
+        $propertyType = isset($formData['property_type']) ? $formData['property_type'] : "";
+
+        // Call search method in Entity
+        $listings = $this->entity->searchListings($searchTerm, $region, $propertyType);
+
+        // Pass listings to Boundary for display
+        $this->boundary->displayListings($listings);
+    }
 }
+
+// Include the entity class
+include_once 'searchListingE.php'; // Include the entity class
+
+// Instantiate the Entity and Boundary classes
+$entity = new searchListingE($conn); // Assuming $conn is your database connection
+$boundary = new searchListingB();
+
+// Instantiate the searchListingC class and process the search
+$searchListingC = new searchListingC($entity, $boundary);
+$searchListingC->processSearch();
 ?>

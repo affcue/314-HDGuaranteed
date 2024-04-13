@@ -1,13 +1,20 @@
-<?php include 'header.php'; ?>
+<?php
+include "header.php";
+include_once 'searchListingE.php'; // Include the entity class
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Search</title>
-    <style>
-
+// Define the SearchBoundary class
+class searchListingB {
+    public function displayForm() {
+        // Display HTML form for search
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Property Search</title>
+            <style>
+        /* Your CSS styles here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -25,7 +32,7 @@
             border: 1px solid #ccc;
             font-size: 16px;
         }
-        button2 {
+        button {
             padding: 10px 20px;
             border: none;
             background-color: #007bff;
@@ -34,14 +41,14 @@
             cursor: pointer;
             font-size: 16px;
         }
-        button2:hover {
+        button:hover {
             background-color: #0056b3;
         }
-        .button2-group {
+        .button-group {
             margin-top: 10px;
             margin-bottom: 20px;
         }
-        .button2-group button {
+        .button-group button {
             margin: 0 5px;
         }
         .listing-info {
@@ -60,29 +67,79 @@
             margin: 0 auto; /* Center-align the table */
         }
     </style>
-</head>
-<body>
-<div class="container">
-    <div class="input-group">
-        <form method="POST" action="">
-            <input type="text" name="search" placeholder="Search for...">
-            <button2 type="submit" name="submit">Search</button>
-        </form>
-    </div>
-    <div class="button2-group">
-        <form method="POST" action="">
-            <input type="radio" name="region" value="north">North
-            <input type="radio" name="region" value="south">South
-            <input type="radio" name="region" value="east">East
-            <input type="radio" name="region" value="west">West
-            <input type="radio" name="region" value="central">Central
-            <input type="radio" name="property_type" value="Condominium">Condominium
-            <input type="radio" name="property_type" value="Landed Property">Landed Property
-            <input type="radio" name="property_type" value="HDB Flat">HDB Flat
-            <button2 type="submit">Apply Filters</button>
-        </form>
-    </div>
-    <div class="listing-info">
-        <?php include 'searchListingC.php'; ?>
-    </div>
-</div>
+        </head>
+        <body>
+        <div class="container">
+            <div class="input-group">
+                <form method="POST" action="">
+                    <input type="text" name="search" placeholder="Search for...">
+                    <button type="submit" name="submit">Search</button>
+                </form>
+            </div>
+            <div class="button-group">
+                <form method="POST" action="">
+                    <input type="radio" name="region" value="north">North
+                    <input type="radio" name="region" value="south">South
+                    <input type="radio" name="region" value="east">East
+                    <input type="radio" name="region" value="west">West
+                    <input type="radio" name="region" value="central">Central
+                    <input type="radio" name="property_type" value="Condominium">Condominium
+                    <input type="radio" name="property_type" value="Landed Property">Landed Property
+                    <input type="radio" name="property_type" value="HDB Flat">HDB Flat
+                    <button type="submit">Apply Filters</button>
+                </form>
+            </div>
+            <div class="listing-info">
+                <!-- Listing information will be displayed here -->
+            </div>
+        </div>
+        </body>
+        </html>
+        <?php
+    }
+
+    public function displayListings($listings) {
+        // Display listings in HTML table
+        ?>
+        <table border='1'>
+            <tr>
+                <th>Listing location</th>
+                <th>Property type</th>
+                <th>Price</th>
+                <th>Floor size</th>
+                <th>No. of rooms</th>
+                <th>Views</th>
+                <th>Currently shortlisted</th>
+                <th>Action</th>
+            </tr>
+            <?php foreach ($listings as $row): ?>
+                <tr>
+                    <td><?= $row['location'] ?></td>
+                    <td><?= $row['type'] ?></td>
+                    <td>$<?= number_format($row['price']) ?></td>
+                    <td><?= $row['size'] ?> sqf</td>
+                    <td><?= $row['rooms'] ?></td>
+                    <td><?= $row['views'] ?></td>
+                    <td><?= $row['shortlists'] ?></td>
+                    <td><a href='viewlistingB.php?id=<?= $row['listing_id'] ?>'>View</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php
+    }
+
+    public function getFormData() {
+        // Retrieve form data from $_POST or $_GET
+        return $_POST; // For simplicity, you might want to sanitize and validate input
+    }
+}
+
+// Instantiate the searchListingB class
+$searchListingB = new searchListingB();
+
+// Display the search form
+$searchListingB->displayForm();
+
+// Include the control class and process the search
+include 'searchListingC.php'; // Include the control class
+?>
