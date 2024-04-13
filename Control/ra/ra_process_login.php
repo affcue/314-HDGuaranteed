@@ -10,7 +10,7 @@ $pass = $_POST['password'];
 $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
 // SQL query to check if the provided username exists in the database
-$sql = "SELECT * FROM user WHERE username='$user'";
+$sql = "SELECT * FROM ra WHERE username='$user'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
     if (password_verify($pass, $row['password'])) {
         // Password is correct, login successful
         // Redirect the user to ra_home.html
-        header("Location: ra_home.html");
+        header("Location: ../../Boundary/ra/raHome.php");
         exit();
     } else {
         // Password is incorrect

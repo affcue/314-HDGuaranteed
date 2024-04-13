@@ -1,10 +1,23 @@
 <?php
 // Database connection parameters
+//change your servername, username and password as necessary for testing. 
+//Do not push your editted username and password to GitHub
+//Feel free to leave a commented statement with your login for testing
+
+/*
 $servername = "localhost";
 $username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$password = "your_password"; 
+$dbname = "314hdguaranteed";
+*/
 
+//FQs db login
+/*
+$servername = "127.0.0.1:3307";
+$username = "root";
+$password = ""; 
+$dbname = "314hdguaranteed";
+*/
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

@@ -63,6 +63,8 @@ include 'header.php'
     </style>
 </head>
 <body>
+<?php include 'header.php'?>
+
     <div class="container">
         <div class="input-group">
             <form method="POST" action="">
