@@ -14,7 +14,7 @@ if (!$conn) {
 }
 
 // Insert data into the listing table
-$sql = "INSERT INTO listing (region, type, price, size, rooms, views, shortlists) VALUES ('West', 'HDB', 750000, 990, 3, 101, 'no')";
+$sql = "INSERT INTO listing (region, type, location, postal, price, rooms, size,  views, shortlists) VALUES ('West', 'HDB Flat', 'Clementi', 453893, 750000, 3, 1600, 101, 'no')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record inserted successfully";
@@ -23,20 +23,22 @@ if (mysqli_query($conn, $sql)) {
 }
 
 
-$sql2 = "INSERT INTO listing (region, type, price, size, rooms, views, shortlists) VALUES ('North', 'Condo', 4100000, 1000, 4, 130, 'yes')";
+$sql2 = "INSERT INTO listing (region, type, location, postal, price, rooms, size, views, shortlists) VALUES ('North', 'Condominium', 'Woodlands', 123456, 4100000, 4, 1300, 120, 'yes')";
 
 if (mysqli_query($conn, $sql2)) {
     echo "Second record inserted successfully";
 } else {
     echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 }
-$sql2 = "INSERT INTO listing (region, type, price, size, rooms, views, shortlists) VALUES ('North', 'Condo', 4100000, 1000, 4, 130, 'yes')";
 
-if (mysqli_query($conn, $sql2)) {
+$sql3 = "INSERT INTO listing (region, type, location, postal, price, rooms, size, views, shortlists) VALUES ('East', 'Landed Property', 'Bedok', 696420, 21000000, 9, 20000, 150, 'yes')";
+
+if (mysqli_query($conn, $sql3)) {
     echo "Second record inserted successfully";
 } else {
-    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
 }
+
 // Close the database connection
 mysqli_close($conn);
 //comment
