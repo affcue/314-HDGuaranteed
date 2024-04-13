@@ -10,6 +10,7 @@
         align-items: center;
     }
 </style>
+
 <body>
 <div class="header">
     <div class="buttons">
