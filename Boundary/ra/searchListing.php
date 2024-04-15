@@ -1,4 +1,3 @@
-//sequential code
 <?php
 include 'header.php'
 ?>
@@ -64,7 +63,6 @@ include 'header.php'
     </style>
 </head>
 <body>
-<?php include 'header.php'?>
 
     <div class="container">
         <div class="input-group">
@@ -139,7 +137,7 @@ include 'header.php'
                                     <td>" . $row["rooms"] . "</td>
                                     <td>" . $row["views"] . "</td>
                                     <td>" . $row["shortlists"] . "</td>
-                                    <td><a href='viewlisting.php?id=" . $row["listing_id"] . "'>View</a></td>
+                                    <td><a href='viewListingB.php?id=" . $row["listing_id"] . "'>View</a></td>
                                 </tr>";
                         }
                     } else {
