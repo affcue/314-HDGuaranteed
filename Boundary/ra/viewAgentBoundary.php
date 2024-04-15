@@ -1,5 +1,5 @@
 <?php
-require_once("../controller/ra/ViewAgentController.php");
+require_once("../../Control/ra/ViewAgentController.php");
 
 $controller = new ViewAgentController();
 $agent = $controller->displayAgentInfo($_GET['name']);

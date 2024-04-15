@@ -103,7 +103,7 @@
                 <th>Action</th>
             </tr>
             <?php
-            include("../entity/ra/RAEntity.php");
+            include("../../Entity/ra/RAEntity.php");
 
             // Create an instance of RAEntity class
             $raEntity = new RAEntity();
@@ -111,7 +111,7 @@
             // Fetch RA data
             $raData = $raEntity->fetchRAData();
 
-            // Display RA data in HTML table
+            // Display RA data 
             foreach ($raData as $ra) {
                 echo "<tr>";
                 echo "<td>{$ra['name']}</td>";
