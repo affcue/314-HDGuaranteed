@@ -1,26 +1,29 @@
 <?php
-include 'My_ListingsE.php'; // Include the Entity class to manage data operations
+include_once 'config.php';  // Include database configuration settings
 
-class ListingsController {
-    private $listingManager;
+class raUserProfile {
+    private $dbConnection;
 
-    public function __construct(ListingManager $manager) { // Constructor to initialize the ListingManager
-        $this->listingManager = $manager;
+    public function __construct() {
+        global $db;  // Assume $db is set up in config.php
+        $this->dbConnection = $db;
     }
 
-    public function getListings($agentId) { // Fetch listings associated with a specific agent
-        return $this->listingManager->fetchAllListingsByAgent($agentId);
+    public function getUserProfile($raId) {
+        // SQL query to get user profile
+        $query = "SELECT name, description, `e-mail` as email, contact FROM user WHERE ra_id = ?";
+        $stmt = $this->dbConnection->prepare($query);
+        $stmt->bind_param("i", $raId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
     }
 
-    public function createListing($data) { // Handle the creation of a new listing
-        return $this->listingManager->addListing($data);
-    }
-
-    public function updateListing($listingId, $data) { // Handle updates to an existing listing
-        return $this->listingManager->updateListing($listingId, $data);
-    }
-
-    public function deleteListing($listingId) { // Handle the deletion of a listing
-        return $this->listingManager->deleteListing($listingId);
+    public function updateUserProfile($raId, $name, $description, $email, $contact) {
+        // SQL query to update user profile
+        $query = "UPDATE user SET name = ?, description = ?, `e-mail` = ?, contact = ? WHERE ra_id = ?";
+        $stmt = $this->dbConnection->prepare($query);
+        $stmt->bind_param("ssssi", $name, $description, $email, $contact, $raId);
+        $stmt->execute();
     }
 }
+?>
