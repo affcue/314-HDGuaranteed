@@ -1,6 +1,6 @@
 Import the SQL Server into phpmyadmin
 1. Go to http://localhost/phpmyadmin/
-2. Import the SQL script from /Entity/314hdguaranteed
+2. Import the SQL script from /Database/314hdguaranteed
 
 Clone repo onto your Github Desktop
 1. Download GitHub Desktop https://desktop.github.com/
