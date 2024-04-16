@@ -18,4 +18,13 @@ class ViewAgentController
         // Return the agent details
         return $agent;
     }
+
+    public function displayAgentReviews($raId)
+    {
+        // Retrieve agent reviews based on the provided raId
+        $reviews = $this->entity->fetchAgentReviews($raId);
+
+        // Return the agent reviews
+        return $reviews;
+    }
 }
