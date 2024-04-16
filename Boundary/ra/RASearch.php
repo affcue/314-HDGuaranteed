@@ -123,7 +123,8 @@
                     // existing code for displaying data
                 }
             } else {
-                echo "<p>No search results found for " . htmlspecialchars($search_query) . "</p>";
+                echo "<p>No search results found for " . htmlspecialchars($search_query) . ". Kindly click search button to retry</p>";
+        
             }
             
             // Display RA data 
