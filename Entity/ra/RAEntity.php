@@ -13,23 +13,36 @@ class RAEntity
         $this->conn = $dbConnection->getConnection();
     }
 
-    public function fetchRAData()
+    public function fetchRAData($search_query = null)
     {
         $sql = "SELECT * FROM ra";
-        $result = mysqli_query($this->conn, $sql);
 
-        if (!$result) {
-            die("Error fetching RA data: " . mysqli_error($this->conn));
+        if ($search_query) {
+            $sql .= " WHERE name LIKE ?";
+            $search_query = "%" . $search_query . "%";
         }
+
+        $stmt = $this->conn->prepare($sql);
+
+        if ($search_query) {
+            $stmt->bind_param('s', $search_query);
+        }
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
 
         $raData = array();
 
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = $result->fetch_assoc()) {
             $raData[] = $row;
         }
 
         return $raData;
     }
+
+    
+
 
     // Additional methods for RAEntity can be added here
 }

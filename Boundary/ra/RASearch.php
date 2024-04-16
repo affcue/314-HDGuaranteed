@@ -91,10 +91,10 @@
         <h1>RA Search</h1>
         <form method="POST">
             <label for="search_query">Search:</label>
-            <input type="text" name="search_query" placeholder="Search for">
+            <input type="text" name="search_query" placeholder="Search for agent's name">
             <button type="submit" name="search">Search</button>
-            <br><br>
         </form>
+
         <table>
             <tr>
                 <th>Name</th>
@@ -111,6 +111,21 @@
             // Fetch RA data
             $raData = $raEntity->fetchRAData();
 
+            $search_query = isset($_POST['search_query']) ? trim($_POST['search_query']) : null;
+
+            $raData = $raEntity->fetchRAData($search_query);
+
+            $raData = $raEntity->fetchRAData($search_query);
+
+            // if no search results
+            if (!empty($raData)) {
+                foreach ($raData as $ra) {
+                    // existing code for displaying data
+                }
+            } else {
+                echo "<p>No search results found for " . htmlspecialchars($search_query) . "</p>";
+            }
+            
             // Display RA data 
             foreach ($raData as $ra) {
                 echo "<tr>";
@@ -122,8 +137,10 @@
                 echo "<td><a href='viewAgentBoundary.php?name=" . urlencode($ra['name']) . "' class='view-button'>View</a></td>";
                 echo "</tr>";
             }
+
             ?>
         </table>
+        <br></br>    
         <a href="admin_menu.php"><button>Back</button></a>
     </div>
 </body>
