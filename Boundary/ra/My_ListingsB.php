@@ -1,3 +1,4 @@
+<!-- My_ListingsB.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,27 +9,32 @@
 </head>
 <body>
     <header>
-        <a href="raHome.php" class="nav-button left">Home</a>
+        <a href="home.php" class="nav-button left">Home</a>
         <div class="nav-buttons right">
             <a href="searchAgent.php" class="nav-button">Find Listing</a>
-            <a href="searchListing.php" class="nav-button">Find Agent</a>
-            <a href="logout.php" class="nav-button">Logout</a>
+            <a href="searchListing.php" class="nav-button">List Your Home</a>
         </div>
     </header>
     <main>
         <h1>My Listings</h1>
-        <button onclick="location.href='createListing.php'">Create New Listing +</button>
-        <?php foreach ($listings as $listing): ?>
-        <section class="listing-container">
-            <div class="listing">
-                <span><?= htmlspecialchars($listing['location']) ?> | <?= htmlspecialchars($listing['type']) ?> | $<?= htmlspecialchars($listing['price']) ?> | <?= htmlspecialchars($listing['size']) ?> sqft | <?= htmlspecialchars($listing['rooms']) ?> rooms | <?= htmlspecialchars($listing['views']) ?> views | <?= htmlspecialchars($listing['shortlists']) ?> shortlisted</span>
-                <div class="listing-actions">
-                    <button onclick="location.href='editListing.php?listing_id=<?= $listing['listing_id'] ?>'">Edit</button>
-                    <button onclick="if(confirm('Are you sure you want to delete this listing?')) location.href='deleteListingProcess.php?listing_id=<?= $listing['listing_id'] ?>'">Delete</button>
+        <?php include 'My_ListingsC.php'; ?>
+        <div class="listings-container">
+            <?php foreach ($userListings as $listing): ?>
+                <div class="listing">
+                    <h3><?php echo htmlspecialchars($listing['type']); ?></h3>
+                    <p>Location: <?php echo htmlspecialchars($listing['location']); ?></p>
+                    <p>Price: $<?php echo htmlspecialchars($listing['price']); ?></p>
+                    <p>Rooms: <?php echo htmlspecialchars($listing['rooms']); ?></p>
+                    <p>Size: <?php echo htmlspecialchars($listing['size']); ?> sqft</p>
+                    <p>Region: <?php echo htmlspecialchars($listing['region']); ?></p>
+                    <form method="post" action="">
+                        <input type="hidden" name="listing_id" value="<?php echo $listing['listing_id']; ?>">
+                        <button type="submit" name="delete">Delete</button>
+                    </form>
+                    <a href="EditListing.php?listing_id=<?php echo $listing['listing_id']; ?>">Edit</a>
                 </div>
-            </div>
-        </section>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </main>
 </body>
 </html>
