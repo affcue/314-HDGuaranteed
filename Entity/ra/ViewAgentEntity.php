@@ -34,5 +34,33 @@ class ViewAgentEntity
 
         return $agent;
     }
+
+    public function fetchAgentReviews($raId)
+    {
+        // Prepare SQL statement to fetch agent reviews by raId
+        $sql = "SELECT description, user_id, stars FROM rating WHERE ra_id = ?";
+
+        // Prepare and bind parameters
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $raId);
+
+        // Execute query
+        $stmt->execute();
+
+        // Get result
+        $result = $stmt->get_result();
+
+        // Fetch data
+        $reviews = array();
+        while ($row = $result->fetch_assoc()) {
+            $reviews[] = $row;
+        }
+
+        // Close statement
+        $stmt->close();
+
+        return $reviews;
+    }
 }
-?>
+
+
