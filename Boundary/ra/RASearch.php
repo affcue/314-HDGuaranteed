@@ -83,11 +83,8 @@
 
 <body>
     <div class="adminmenu-container">
-        <div class="service-button">
-            <button type="submit" name="find_agent">Find Agent</button>
-            <button type="submit" name="find_listing">Find Listing</button>
-            <button type="submit" name="logout">Logout</button>
-        </div>
+        <?php include 'header.php'?>
+        
         <h1>RA Search</h1>
         <form method="POST">
             <label for="search_query">Search:</label>
@@ -142,7 +139,7 @@
             ?>
         </table>
         <br></br>    
-        <a href="admin_menu.php"><button>Back</button></a>
+        <a href="raHome.php"><button>Back</button></a>
     </div>
 </body>
 

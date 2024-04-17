@@ -83,6 +83,7 @@ class searchListingB {
                     <input type="radio" name="region" value="east">East
                     <input type="radio" name="region" value="west">West
                     <input type="radio" name="region" value="central">Central
+                    <br>
                     <input type="radio" name="property_type" value="Condominium">Condominium
                     <input type="radio" name="property_type" value="Landed Property">Landed Property
                     <input type="radio" name="property_type" value="HDB Flat">HDB Flat
