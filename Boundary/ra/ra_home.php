@@ -1,3 +1,17 @@
+<?php
+    // Start the session
+session_start();
+
+// Check if ra_id is set in session
+if(isset($_SESSION['ra_id'])) {
+    $ra_id = $_SESSION['ra_id'];
+    // Now you can use $ra_id as needed
+} else {
+    // Redirect user to login page if not logged in
+    header("Location: ../../Boundary/ra/ra_login.php");
+    exit;}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

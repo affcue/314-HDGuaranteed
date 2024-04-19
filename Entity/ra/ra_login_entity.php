@@ -1,25 +1,20 @@
 <?php
-// ra_login_entity.php
+class RALoginEntity {
+    private $conn;
 
-class RA_Login_Entity {
-    private $db;
-
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
-    public function verifyLogin($username, $password) {
-        $ra_id = null; // Initialize $ra_id to null
-
-        $stmt = $this->db->prepare("SELECT ra_id FROM ra WHERE username = ? AND password = ?");
+    public function validateLogin($username, $password) {
+        $sql = "SELECT ra_id FROM ra WHERE username = ? AND password = ?";
+        $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
-        $stmt->bind_result($ra_id);
-        $stmt->fetch();
-        $stmt->close();
-
-        if (isset($ra_id)) {
-            return $ra_id;
+        $result = $stmt->get_result();
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['ra_id'];
         } else {
             return false;
         }

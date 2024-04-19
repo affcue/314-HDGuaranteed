@@ -1,7 +1,7 @@
 <?php
 // RAEntity.php
 
-require_once("config.php");
+require_once("../../Database/config.php");
 
 class RAEntity
 {
