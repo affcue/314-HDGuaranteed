@@ -1,5 +1,5 @@
 <?php
-require_once(".php");
+require_once("../../Database/config.php"); //database name 
 
 class ViewAgentEntity
 {

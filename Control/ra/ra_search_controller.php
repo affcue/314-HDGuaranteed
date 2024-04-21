@@ -1,5 +1,5 @@
 <?php
-require_once("../../Entity/ra/ViewAgentEntity.php");
+require_once("../../Entity/ra/ra_view_entity.php");
 
 class ViewAgentController
 {
@@ -16,7 +16,7 @@ class ViewAgentController
         $agent = $this->entity->fetchAgentByName($agentName);
 
         // Include the boundary file
-        require_once("../../Boundary/ra/viewAgentboundary.php");
+        require_once("../../Boundary/ra/ra_view.php");
     }
 }
 ?>

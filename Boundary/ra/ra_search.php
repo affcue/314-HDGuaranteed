@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             margin: 20;
-            height: 50vh;
+            height: 80vh;
             background-color: white;
         }
 
@@ -100,7 +100,7 @@
                 <th>Action</th>
             </tr>
             <?php
-            include("../../Entity/ra/RAEntity.php");
+            include("../../Entity/ra/ra_search_entity.php");
 
             // Create an instance of RAEntity class
             $raEntity = new RAEntity();
@@ -132,7 +132,7 @@
                 echo "<td>{$ra['contact']}</td>";
                 //echo "<td><a href='viewAgentBoundary.php?name=" . urlencode($ra['name']) . "' class='view-button'>View</a></td>";
                 //echo "<td><a href='viewAgent.php?id={$ra['id']}'>View</a></td>"; // View button with link to viewAgent.php
-                echo "<td><a href='viewAgentBoundary.php?name=" . urlencode($ra['name']) . "' class='view-button'>View</a></td>";
+                echo "<td><a href='ra_view.php?name=" . urlencode($ra['name']) . "' class='view-button'>View</a></td>";
                 echo "</tr>";
             }
 

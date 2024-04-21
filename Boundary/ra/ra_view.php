@@ -1,5 +1,5 @@
 <?php
-require_once("../../Control/ra/ViewAgentController.php");
+require_once("../../Control/ra/ra_view_controller.php");
 
 $controller = new ViewAgentController();
 $agent = $controller->displayAgentInfo($_GET['name']);
@@ -77,6 +77,8 @@ if (count($reviews) > 0) {
                 <p>No reviews</p>
             <?php endif; ?>
         </div>
+        <br></br>
+        <a href="ra_search.php"><button>Return</button></a>
     </div>
 
 </body>

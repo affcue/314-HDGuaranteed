@@ -37,7 +37,7 @@
 <body>
     <div class="header">
         <div class="buttons">
-            <button onclick="window.location.href='RASearch.php'">Find Agent</button>
+            <button onclick="window.location.href='ra_search.php'">Find Agent</button>
             <button onclick="window.location.href='searchListingB.php'">Find Listing</button>
             <div style="margin-right: 10px;"></div> <!-- Spacer -->
             <button onclick="window.location.href='logout.php'">Logout</button>

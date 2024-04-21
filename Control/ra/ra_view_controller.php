@@ -1,5 +1,5 @@
 <?php
-require_once("../../Entity/ra/ViewAgentEntity.php");
+require_once("../../Entity/ra/ra_view_entity.php");
 
 class ViewAgentController
 {
