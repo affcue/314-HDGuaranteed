@@ -72,8 +72,8 @@ if(isset($_SESSION['ra_id'])) {
 <div class="container">
     <h2 class="title">Welcome to your RA Home</h2>
     <div class="button-container">
-        <button onclick="window.location.href='edit_ra_profile.php'">Edit RA Profile</button>
-        <button onclick="window.location.href='my_listings.php'">My Listings</button>
+        <button onclick="window.location.href='Edit_ProfileB.php'">Edit RA Profile</button>
+        <button onclick="window.location.href='My_ListingsB.php'">My Listings</button>
     </div>
 </div>
 
