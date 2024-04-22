@@ -1,15 +1,15 @@
 <?php
-    // Start the session
+// Start the session
 session_start();
 
-// Check if ra_id is set in session
-if(isset($_SESSION['ra_id'])) {
-    $ra_id = $_SESSION['ra_id'];
-    // Now you can use $ra_id as needed
-} else {
-    // Redirect user to login page if not logged in
-    header("Location: ../../Boundary/ra/ra_login.php");
-    exit;}
+// Check if the user is logged in, if not redirect to login page
+if (!isset($_SESSION['ra_id'])) {
+    header("Location: ra_login.php");
+    exit();
+}
+
+// Get the ra_id from the session
+$ra_id = $_SESSION['ra_id'];
 ?>
 
 <!DOCTYPE html>
@@ -72,8 +72,8 @@ if(isset($_SESSION['ra_id'])) {
 <div class="container">
     <h2 class="title">Welcome to your RA Home</h2>
     <div class="button-container">
-        <button onclick="window.location.href='Edit_ProfileB.php'">Edit RA Profile</button>
-        <button onclick="window.location.href='My_ListingsB.php'">My Listings</button>
+        <button onclick="window.location.href='edit_profile.php?ra_id=<?php echo $ra_id; ?>'">Edit RA Profile</button>
+        <button onclick="window.location.href='my_listings.php?ra_id=<?php echo $ra_id; ?>'">My Listings</button>
     </div>
 </div>
 
