@@ -139,7 +139,7 @@
             ?>
         </table>
         <br></br>    
-        <a href="raHome.php"><button>Back</button></a>
+        <button onclick="window.location.href='ra_home.php'">Back to Home</button>
     </div>
 </body>
 

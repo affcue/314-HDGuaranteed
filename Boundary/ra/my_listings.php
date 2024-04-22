@@ -121,7 +121,7 @@ $listings = $myListingsController->getAllListingsByRAID($ra_id);
                         <td><?php echo $listing['shortlists']; ?></td>
                         <td class="action-buttons">
                             <button onclick="window.location.href='edit_listing.php?listing_id=<?php echo $listing['listing_id']; ?>'">Edit</button>
-                            <button onclick="window.location.href='delete_listing.php?listing_id=<?php echo $listing['listing_id']; ?>'">Delete</button>
+                            <button onclick="window.location.href='../../Control/ra/delete_listing_controller.php?listing_id=<?php echo $listing['listing_id']; ?>'">Delete</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
