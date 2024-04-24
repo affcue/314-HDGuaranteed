@@ -1,5 +1,5 @@
 <?php
-class CreateListingEntity {
+class Listing {
     private $conn;
 
     public function __construct($conn) {
@@ -27,6 +27,32 @@ class CreateListingEntity {
             // Handle errors
             echo "Error executing statement: " . $stmt->error;
             return false; // Failed to create listing
+        }
+    }
+
+    public function getListingsByRAID($ra_id) {
+        $sql = "SELECT * FROM listing WHERE ra_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $ra_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $listings = array();
+        while ($row = $result->fetch_assoc()) {
+            $listings[] = $row;
+        }
+        return $listings;
+    }
+
+    public function deleteListing($listing_id) {
+        $sql = "DELETE FROM listing WHERE listing_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $listing_id);
+        
+        if ($stmt->execute()) {
+            return true; // Listing deleted successfully
+        } else {
+            // Handle errors
+            return false; // Failed to delete listing
         }
     }
 }

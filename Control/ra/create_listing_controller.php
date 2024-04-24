@@ -2,20 +2,20 @@
 session_start(); // Start the session
 
 require_once('../../Database/db_conn.php');
-require_once('../../Entity/ra/create_listing_entity.php');
+require_once('../../Entity/ra/listing.php');
 
 class CreateListingController {
-    private $createListingEntity;
+    private $Listing;
 
     public function __construct($conn) {
-        $this->createListingEntity = new CreateListingEntity($conn);
+        $this->Listing = new Listing($conn);
     }
 
     public function createListing($location, $type, $price, $size, $rooms) {
         // Check if ra_id is set in the session
         if(isset($_SESSION['ra_id'])) {
             $ra_id = $_SESSION['ra_id'];
-            return $this->createListingEntity->createListing($ra_id, $location, $type, $price, $size, $rooms);
+            return $this->Listing->createListing($ra_id, $location, $type, $price, $size, $rooms);
         } else {
             // Handle the case where ra_id is not set
             return false;

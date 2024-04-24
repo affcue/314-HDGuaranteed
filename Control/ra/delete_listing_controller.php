@@ -2,17 +2,17 @@
 session_start(); // Start the session
 
 require_once('../../Database/db_conn.php');
-require_once('../../Entity/ra/delete_listing_entity.php');
+require_once('../../Entity/ra/listing.php');
 
 class DeleteListingController {
-    private $deleteListingEntity;
+    private $Listing;
 
     public function __construct($conn) {
-        $this->deleteListingEntity = new DeleteListingEntity($conn);
+        $this->Listing = new Listing($conn);
     }
 
     public function deleteListing($listing_id) {
-        return $this->deleteListingEntity->deleteListing($listing_id);
+        return $this->Listing->deleteListing($listing_id);
     }
 }
 
