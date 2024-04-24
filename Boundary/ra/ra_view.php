@@ -1,6 +1,7 @@
 <?php
 require_once("../../Control/ra/ra_view_controller.php");
 
+
 $controller = new ViewAgentController();
 $agent = $controller->displayAgentInfo($_GET['name']);
 $reviews = $controller->displayAgentReviews($agent['ra_id']);
