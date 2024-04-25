@@ -79,6 +79,7 @@ if (count($reviews) > 0) {
             <?php endif; ?>
         </div>
         <br></br>
+        <a href="ra_rating_boundary.php"><button>Rate agent</button></a>
         <a href="ra_search.php"><button>Return</button></a>
     </div>
 
