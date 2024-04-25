@@ -137,7 +137,7 @@ include 'header.php'
                                     <td>" . $row["rooms"] . "</td>
                                     <td>" . $row["views"] . "</td>
                                     <td>" . $row["shortlists"] . "</td>
-                                    <td><a href='viewListingB.php?id=" . $row["listing_id"] . "'>View</a></td>
+                                    <td><a href='view_listing_boundary.php?id=" . $row["listing_id"] . "'>View</a></td>
                                 </tr>";
                         }
                     } else {
