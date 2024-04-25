@@ -1,6 +1,7 @@
 <?php
 require_once("../../Control/ra/ra_view_controller.php");
 
+
 $controller = new ViewAgentController();
 $agent = $controller->displayAgentInfo($_GET['name']);
 $reviews = $controller->displayAgentReviews($agent['ra_id']);
@@ -78,6 +79,7 @@ if (count($reviews) > 0) {
             <?php endif; ?>
         </div>
         <br></br>
+        <a href="ra_rating_boundary.php"><button>Rate agent</button></a>
         <a href="ra_search.php"><button>Return</button></a>
     </div>
 

@@ -1,7 +1,8 @@
 <?php
 class DBConnection
 {
-    private $servername = "127.0.0.1:3307";
+    private $servername = "localhost";
+    //private $servername = "localhost"; #for testing purposes
     private $username = "root";
     private $password = "";
     private $dbname = "314hdguaranteed";

@@ -11,7 +11,7 @@ $password = "your_password";
 $dbname = "314hdguaranteed";
 */
 
-$servername = "127.0.0.1:3307";
+$servername = "localhost";
 $username = "root";
 $password = ""; 
 $dbname = "314hdguaranteed";

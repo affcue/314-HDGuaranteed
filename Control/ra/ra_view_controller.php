@@ -1,5 +1,5 @@
 <?php
-require_once("../../Entity/ra/ra_view_entity.php");
+require_once("../../Entity/ra/ra_entity.php");
 
 class ViewAgentController
 {
@@ -7,7 +7,7 @@ class ViewAgentController
 
     public function __construct()
     {
-        $this->entity = new ViewAgentEntity();
+        $this->entity = new RAEntity();
     }
 
     public function displayAgentInfo($agentName)

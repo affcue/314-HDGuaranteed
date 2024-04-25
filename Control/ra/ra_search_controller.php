@@ -1,5 +1,5 @@
 <?php
-require_once("../../Entity/ra/ra_view_entity.php");
+require_once("../../Entity/ra/ra_entity.php");
 
 class ViewAgentController
 {
@@ -7,16 +7,21 @@ class ViewAgentController
 
     public function __construct()
     {
-        $this->entity = new ViewAgentEntity();
+        $this->entity = new RAEntity();
     }
 
     public function displayAgentInfo($agentName)
     {
-        // Retrieve agent information based on the provided name
         $agent = $this->entity->fetchAgentByName($agentName);
+        return $agent;
+    }
 
-        // Include the boundary file
-        require_once("../../Boundary/ra/ra_view.php");
+
+    public function displayAgentReviews($raId)
+    {
+        $reviews = $this->entity->fetchAgentReviews($raId);
+        return $reviews;
     }
 }
+
 ?>

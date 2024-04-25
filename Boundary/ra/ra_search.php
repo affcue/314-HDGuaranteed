@@ -83,8 +83,8 @@
 
 <body>
     <div class="adminmenu-container">
-        <?php include 'header.php'?>
-        
+        <?php include 'header.php' ?>
+
         <h1>RA Search</h1>
         <form method="POST">
             <label for="search_query">Search:</label>
@@ -100,7 +100,7 @@
                 <th>Action</th>
             </tr>
             <?php
-            include("../../Entity/ra/ra_search_entity.php");
+            include("../../Entity/ra/ra_entity.php");
 
             // Create an instance of RAEntity class
             $raEntity = new RAEntity();
@@ -121,9 +121,8 @@
                 }
             } else {
                 echo "<p>No search results found for " . htmlspecialchars($search_query) . ". Kindly click search button to retry</p>";
-        
             }
-            
+
             // Display RA data 
             foreach ($raData as $ra) {
                 echo "<tr>";
@@ -135,10 +134,11 @@
                 echo "<td><a href='ra_view.php?name=" . urlencode($ra['name']) . "' class='view-button'>View</a></td>";
                 echo "</tr>";
             }
+            
 
             ?>
         </table>
-        <br></br>    
+        <br></br>
         <button onclick="window.location.href='ra_home.php'">Back to Home</button>
     </div>
 </body>
