@@ -5,15 +5,17 @@ require_once("../../Control/ra_rating_controller.php");
 $controller = new RatingController();
 
 // Check if form is submitted
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the rating and description from the form
     $stars = $_POST['stars'] ?? null;
     $description = $_POST['description'];
 
+    // Assuming you have agent's ID available
+    $raId = $agent['ra_id'];
+
     // Add the rating to the database only if stars and description are provided
     if ($stars !== null && $description !== null) {
-        $controller->addRating($stars, $description);
+        $controller->addRating($raId, $userId, $stars, $description); // Pass ra_id to addRating method
     } else {
         // Handle the case when stars or description is not provided
         // For example, you can display an error message to the user
