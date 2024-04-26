@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../Entity/ra_rating_entity.php");
+require_once("../../Entity/rating.php");
 
 class RatingController
 {
@@ -8,16 +8,12 @@ class RatingController
 
     public function __construct()
     {
-        $this->ratingEntity = new RARatingEntity();
+        $this->ratingEntity = new Rating();
     }
 
-    public function addRating($stars, $description)
+    public function addRating($raId, $userId, $stars, $description)
     {
-        // Assuming you have user_id and ra_id available here, replace with appropriate values
-        $userId = 1; // Replace with actual user_id
-        $raId = 1; // Replace with actual ra_id
-
-        // Add the rating to the database
+        // Add the rating to the database with ra_id
         $this->ratingEntity->addRating($raId, $userId, $stars, $description);
     }
 }
