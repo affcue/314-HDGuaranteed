@@ -55,7 +55,15 @@ class SellerEntity {
         $stmt->close();
 
         if ($result->num_rows == 1) {
-            return true; // Username and password match
+            // Fetch the row from the result set
+            $row = $result->fetch_assoc();
+            
+            // Check if the purpose is "seller"
+            if ($row['purpose'] == 'seller') {
+                return true; // Access granted for seller
+            } else {
+                return false; // Access denied for buyer
+            }
         } else {
             return false; // Username and password do not match
         }
