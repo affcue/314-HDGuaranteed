@@ -8,8 +8,15 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+if (!isset($_SESSION['username'])) {
+    // Redirect to login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
+
 // Retrieve user_id from session
 $user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
 
 // Now you can use $user_id to perform actions or fetch data specific to the logged-in user
 ?>
@@ -75,7 +82,7 @@ $user_id = $_SESSION['user_id'];
 
 
 <div class="container">
-    <h2 class="title">Welcome to your Home</h2>
+<h2 class="title">Welcome to your Home, <?php echo htmlspecialchars($username); ?></h2>
     <div class="button-container">
         <button onclick="window.location.href='seller_listings.php'">My Listings</button>
         <button onclick="window.location.href='../ra/ra_search.php'">Find agent</button>
