@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user_id) {
             // Store user_id in session
             $_SESSION['user_id'] = $user_id;
-            header("Location: ../../Boundary/seller/sellerHome.php");
+            header("Location: ../../Boundary/seller/seller_home.php");
             exit();
         } else {
             $_SESSION['login_error'] = "Invalid username or password";
