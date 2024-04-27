@@ -1,6 +1,28 @@
 <?php
-require_once("../../Control/ra/ra_view_controller.php");
+session_start(); // Start the session
+// Check if the user_id is set in the session
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to the seller login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
 
+// Get the user_id from the session
+$user_id = $_SESSION['user_id'];
+
+// Display user_id on the website (added this line)
+echo "User ID: $user_id (remove later)";
+// Get the ra_id from the URL parameters
+if (isset($_GET['ra_id'])) {
+    // Store the ra_id in the session
+    $_SESSION['ra_id'] = $_GET['ra_id'];
+} else {
+    // Redirect to the previous page if ra_id is not provided
+    header("Location: ra_search.php");
+    exit();
+}
+
+require_once("../../Control/ra/ra_view_controller.php");
 
 $controller = new ViewAgentController();
 $agent = $controller->displayAgentInfo($_GET['name']);
@@ -54,6 +76,9 @@ if (count($reviews) > 0) {
 
         <?php if (isset($agent)) : ?>
             <div id="agent-details">
+
+            <p><strong>Check ra_id (remove later)</strong> <span id="agent-ra-id"><?php echo htmlspecialchars($agent['ra_id']); ?></span></p>
+
                 <p><strong>Name:</strong> <span id="agent-name"><?php echo htmlspecialchars($agent['name']); ?></span></p>
                 <p><strong>Email:</strong> <span id="agent-email"><?php echo htmlspecialchars($agent['e-mail']); ?></span>
                 </p>
@@ -71,8 +96,7 @@ if (count($reviews) > 0) {
             <?php if (count($reviews) > 0) : ?>
                 <ol id="reviews-list">
                     <?php foreach ($reviews as $review) : ?>
-<li><?php echo htmlspecialchars($review['description']) . ' - written by ' . htmlspecialchars($review['user_id']) . ' (Score: ' . $review['stars'] . '/5)'; ?></li>
-
+                        <li><?php echo htmlspecialchars($review['description']) . ' - written by ' . htmlspecialchars($review['user_id']) . ' (Score: ' . $review['stars'] . '/5)'; ?></li>
                     <?php endforeach; ?>
                 </ol>
             <?php else : ?>
@@ -80,8 +104,10 @@ if (count($reviews) > 0) {
             <?php endif; ?>
         </div>
         <br></br>
-        <a href="ra_rating_boundary.php"><button>Rate agent</button></a>
+        <a href="ra_rating_boundary.php?user_id=<?php echo $user_id; ?>&ra_id=<?php echo $agent['ra_id']; ?>"><button>Rate agent</button></a>
         <a href="ra_search.php"><button>Return</button></a>
+        <a href="../seller/seller_logout.php"><button>Log out</button></a>
+
     </div>
 
 </body>
