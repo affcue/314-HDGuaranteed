@@ -1,3 +1,20 @@
+<?php
+session_start(); // Start the session
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
+
+// Retrieve user_id from session
+$user_id = $_SESSION['user_id'];
+
+// Now you can use $user_id to perform actions or fetch data specific to the logged-in user
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +79,7 @@
     <div class="button-container">
         <button onclick="window.location.href='edit_seller_profile.php'">Edit RA Profile</button>
         <button onclick="window.location.href='seller_listings.php'">My Listings</button>
+        <button onclick="window.location.href='../ra/ra_search.php'">Find agent</button>
     </div>
     <div class="button-container">
         <button class="small-button" onclick="window.location.href='buyerHome.php'">Switch to Buy</button>
