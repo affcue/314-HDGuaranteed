@@ -43,13 +43,28 @@ class Listing {
         return $listings;
     }
 
-    public function getListingDetails($listing_id) {
+    public function getListingByListingID($listing_id) {
         $sql = "SELECT * FROM listing WHERE listing_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $listing_id);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_assoc();
+    }    
+    
+    public function getAllListings() {
+        $sql = "SELECT * FROM listing";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $listings = [];
+            while ($row = $result->fetch_assoc()) {
+                $listings[] = $row;
+            }
+            return $listings;
+        } else {
+            return [];
+        }
     }
 
     public function editListing($listing_id, $location, $type, $price, $size, $rooms) {
@@ -71,5 +86,45 @@ class Listing {
             return false; // Failed to delete listing
         }
     } 
+
+    public function searchListing($searchTerm = null, $region = null, $propertyType = null) {
+        // Debugging code to verify the type of $this->conn
+        if (!$this->conn instanceof mysqli) {
+            throw new Exception("Invalid database connection object.");
+        }
+    
+        // Base query to select listings
+        $query = "SELECT * FROM listing WHERE 1";
+    
+        // Add conditions based on search term and filters
+        if ($searchTerm) {
+            $query .= " AND location LIKE '%$searchTerm%'";
+        }
+        /*
+        if ($region) {
+            $query .= " AND region = '$region'";
+        }
+        if ($propertyType) {
+            $query .= " AND type = '$propertyType'";
+        }
+        */
+        // Execute the query using the provided connection
+        $result = $this->conn->query($query);
+
+        // Debugging: Echo the generated SQL query
+        //echo "Generated SQL query: $query<br>";
+
+        // Check if query was successful
+        if ($result && $result->num_rows > 0) {
+            // Fetch data into an array
+            $listings = $result->fetch_all(MYSQLI_ASSOC);
+            echo "Number of listings found: " . count($listings) . "<br>";
+            return $listings;
+        } else {
+            // Handle error or return empty array if no results found
+            echo "No listings found.<br>";
+            return array();
+        }
+    }
 }
 ?>

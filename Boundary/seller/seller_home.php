@@ -71,18 +71,14 @@ $user_id = $_SESSION['user_id'];
 </style>
 </head>
 <body>
-<?php include("../ra/header.php"); ?>
+<?php include("../seller/header.php"); ?>
 
 
 <div class="container">
     <h2 class="title">Welcome to your Home</h2>
     <div class="button-container">
-        <button onclick="window.location.href='edit_seller_profile.php'">Edit RA Profile</button>
         <button onclick="window.location.href='seller_listings.php'">My Listings</button>
         <button onclick="window.location.href='../ra/ra_search.php'">Find agent</button>
-    </div>
-    <div class="button-container">
-        <button class="small-button" onclick="window.location.href='buyerHome.php'">Switch to Buy</button>
     </div>
 </div>
 
