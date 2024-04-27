@@ -1,14 +1,12 @@
 <?php
+require_once("../../Database/db_conn.php");
 class Rating
 {
     private $conn;
 
     public function __construct()
     {
-        // Include the DB connection file
-        require_once("../../Database/db_conn.php");
-
-        // Get the database connection
+        
         global $conn;
         $this->conn = $conn;
     }
@@ -22,30 +20,23 @@ class Rating
         $stmt->close();
     }
 
-    // SellerEntity class
     private $sellerEntity;
 
     public function validateSellerLogin($username, $password)
     {
-        // Create an instance of SellerEntity
         $this->sellerEntity = new SellerEntity($this->conn);
-
-        // Validate login credentials using SellerEntity
         return $this->sellerEntity->validateLogin($username, $password);
     }
 }
 
 class SellerEntity {
-    // Database connection and table name
     private $conn;
     private $table_name = "user";
 
-    // Constructor with $db as database connection
     public function __construct($db) {
-        $this->conn = $db; // Assign the database connection to the private variable
+        $this->conn = $db;
     }
 
-    // Validate login credentials
     public function validateLogin($username, $password) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE username = ? AND password = ?";
         $stmt = $this->conn->prepare($query);
@@ -55,17 +46,14 @@ class SellerEntity {
         $stmt->close();
 
         if ($result->num_rows == 1) {
-            // Fetch the row from the result set
             $row = $result->fetch_assoc();
-            
-            // Check if the purpose is "seller"
             if ($row['purpose'] == 'seller') {
-                return true; // Access granted for seller
+                return $row['user_id'];
             } else {
-                return false; // Access denied for buyer
+                return false;
             }
         } else {
-            return false; // Username and password do not match
+            return false;
         }
     }
 }

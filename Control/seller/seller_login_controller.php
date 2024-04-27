@@ -1,26 +1,34 @@
 <?php
-require_once("../../Database/db_conn.php"); // Include the database connection file
+session_start(); // Start the session
 
-require_once("../../Entity/rating.php");
+include('../../Database/db_conn.php');
+include('../../Entity/rating.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve username and password from the form
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    // Create an instance of SellerEntity
-    $sellerEntity = new SellerEntity($conn); // Pass the database connection as an argument
+        $sellerEntity = new SellerEntity($conn);
 
-    // Validate login credentials
-    $loginResult = $sellerEntity->validateLogin($username, $password);
+        $user_id = $sellerEntity->validateLogin($username, $password);
 
-    if ($loginResult) {
-        // Redirect to the seller home page if login is successful
-        header("Location: ../../Boundary/seller/sellerHome.php");
-        exit();
+        if ($user_id) {
+            // Store user_id in session
+            $_SESSION['user_id'] = $user_id;
+            header("Location: ../../Boundary/seller/sellerHome.php");
+            exit();
+        } else {
+            $_SESSION['login_error'] = "Invalid username or password";
+            header("Location: ../../Boundary/seller/seller_login_boundary.php");
+            exit();
+        }
     } else {
-        // Display an error message if login fails
-        echo "Invalid username or password";
+        header("Location: ../../Boundary/seller/seller_login_boundary.php");
+        exit();
     }
+} else {
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
 }
 ?>
