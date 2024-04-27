@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../Database/db_conn.php");
 
 // Check if listing ID is provided in the URL
 if (isset($_GET['id'])) {
