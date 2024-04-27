@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($loginResult) {
         // Redirect to the seller home page if login is successful
-        header("Location: ../../Boundary/seller/sellerHome.php");
+        header("Location: ../../Boundary/seller/seller_home.php");
         exit();
     } else {
         // Display an error message if login fails
