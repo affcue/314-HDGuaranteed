@@ -14,8 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $sellerEntity->validateLogin($username, $password);
 
         if ($user_id) {
-            // Store user_id in session
+            // Store user_id and username in session
             $_SESSION['user_id'] = $user_id;
+            $_SESSION['username'] = $username;
             header("Location: ../../Boundary/seller/seller_home.php");
             exit();
         } else {
