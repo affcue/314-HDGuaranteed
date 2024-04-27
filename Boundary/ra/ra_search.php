@@ -7,7 +7,12 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../../Boundary/seller/seller_login_boundary.php");
     exit();
 }
-
+if (!isset($_SESSION['username'])) {
+    // Redirect to the seller login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
+$username = $_SESSION['username']; // Retrieve username from session
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +20,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RA Search</title>
+    
     <!-- Include the provided CSS styles -->
     <style>
         body {
@@ -98,6 +104,7 @@ if (!isset($_SESSION['user_id'])) {
             <button onclick="window.location.href='ra_home.php'">Back to Home</button>
             <button onclick="window.location.href='logout.php'">Logout</button>
         </div>
+        <div>Welcome, <?php echo $username . " (checking if username is passed, rmb to delete)"; ?></div> <!-- Display welcome message here -->
     </div>
 
     <div class="adminmenu-container">
