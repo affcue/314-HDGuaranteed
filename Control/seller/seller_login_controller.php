@@ -2,7 +2,7 @@
 session_start(); // Start the session
 
 include('../../Database/db_conn.php');
-include('../../Entity/rating.php');
+include('../../Entity/seller/seller_login_entity.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['password'])) {

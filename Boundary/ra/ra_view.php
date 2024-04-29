@@ -35,14 +35,14 @@ if (count($reviews) > 0) {
         $sum += $review['stars'];
     }
     $averageScore = $sum / count($reviews);
+    $averageScoreFormatted = number_format($averageScore, 2); // Format to 2 decimal places
 } else {
     $averageScore = 0;
+    $averageScoreFormatted = '0.00'; // Set default formatted value if no reviews
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,38 +61,28 @@ if (count($reviews) > 0) {
         }
     </style>
 </head>
-
 <body>
-
     <div class="adminmenu-container">
-
         <div class="service-button">
             <button type="submit" name="find_agent" onclick="location.href='RASearch.php'">Find Agent</button>
             <button type="submit" name="find_listing">Find Listing</button>
             <button type="submit" name="logout">Logout</button>
         </div>
-
         <h1>Agent Details</h1>
-
         <?php if (isset($agent)) : ?>
             <div id="agent-details">
-
-            <p><strong>Check ra_id (remove later)</strong> <span id="agent-ra-id"><?php echo htmlspecialchars($agent['ra_id']); ?></span></p>
-
+                <p><strong>Check ra_id (remove later)</strong> <span id="agent-ra-id"><?php echo htmlspecialchars($agent['ra_id']); ?></span></p>
                 <p><strong>Name:</strong> <span id="agent-name"><?php echo htmlspecialchars($agent['name']); ?></span></p>
-                <p><strong>Email:</strong> <span id="agent-email"><?php echo htmlspecialchars($agent['e-mail']); ?></span>
-                </p>
+                <p><strong>Email:</strong> <span id="agent-email"><?php echo htmlspecialchars($agent['e-mail']); ?></span></p>
                 <p><strong>Contact:</strong> <span id="agent-contact"><?php echo htmlspecialchars($agent['contact']); ?></span></p>
             </div>
         <?php endif; ?>
-
         <div>
             <p><strong>About Me:</strong><span id="agent-about"><?php echo htmlspecialchars($agent['description']); ?></span></p>
         </div>
-
         <h1>Overall Reviews</h1>
         <div id="overall-reviews">
-            <p>Overall Score: <span id="overall-score"><?php echo $averageScore; ?></span>/5</p>
+            <p>Overall Score: <span id="overall-score"><?php echo $averageScoreFormatted; ?></span>/5</p>
             <?php if (count($reviews) > 0) : ?>
                 <ol id="reviews-list">
                     <?php foreach ($reviews as $review) : ?>
@@ -105,11 +95,9 @@ if (count($reviews) > 0) {
         </div>
         <br></br>
         <a href="ra_rating_boundary.php?user_id=<?php echo $user_id; ?>&ra_id=<?php echo $agent['ra_id']; ?>"><button>Rate agent</button></a>
+        <a href="ra_review_delete_boundary.php?user_id=<?php echo $user_id; ?>&ra_id=<?php echo $agent['ra_id']; ?>"><button>Delete my rating</button></a>
         <a href="ra_search.php"><button>Return</button></a>
         <a href="../seller/seller_logout.php"><button>Log out</button></a>
-
     </div>
-
 </body>
-
 </html>
