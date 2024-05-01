@@ -86,7 +86,7 @@ if (count($reviews) > 0) {
             <?php if (count($reviews) > 0) : ?>
                 <ol id="reviews-list">
                     <?php foreach ($reviews as $review) : ?>
-                        <li><?php echo htmlspecialchars($review['description']) . ' - written by ' . htmlspecialchars($review['user_id']) . ' (Score: ' . $review['stars'] . '/5)'; ?></li>
+                        <li><?php echo htmlspecialchars($review['description']) . ' - written by anonymous user' . ' (Score: ' . $review['stars'] . '/5)'; ?></li>
                     <?php endforeach; ?>
                 </ol>
             <?php else : ?>
