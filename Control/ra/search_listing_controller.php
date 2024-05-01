@@ -1,6 +1,6 @@
 <?php
 require_once('../../Database/db_conn.php');
-require_once('../../Entity/ra/listing.php');
+require_once('../../Entity/listing.php');
 
 class SearchListingController {
     private $Listing;

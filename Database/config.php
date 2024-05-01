@@ -34,4 +34,18 @@ class DBConnection
         $this->conn->close();
     }
 }
+
+/*
+FQ's personal login
+$servername = "127.0.0.1:3307";
+$username = "root";
+$password = ""; 
+$dbname = "314hdguaranteed";
+
+General login
+$servername = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "314hdguaranteed";
+*/
 ?>

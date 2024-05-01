@@ -1,5 +1,5 @@
 <?php
-require_once('../../Entity/ra/listing.php');
+require_once('../../Entity/listing.php');
 
 class EditListingController {
     private $Listing;

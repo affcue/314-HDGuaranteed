@@ -1,6 +1,6 @@
 <?php
 require_once('../../Database/config.php');
-require_once('../../Entity/ra/listing.php');
+require_once('../../Entity/listing.php');
 
 class MyListingsController {
     private $conn;

@@ -85,7 +85,6 @@ $username = $_SESSION['username'];
 <h2 class="title">Welcome to your Home, <?php echo htmlspecialchars($username); ?></h2>
     <div class="button-container">
         <button onclick="window.location.href='seller_listings.php'">My Listings</button>
-        <button onclick="window.location.href='../ra/ra_search.php'">Find agent</button>
     </div>
 </div>
 
