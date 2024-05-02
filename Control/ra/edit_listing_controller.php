@@ -9,7 +9,7 @@ class EditListingController {
     }
 
     public function getListingDetails($listing_id) {
-        return $this->Listing->getListingDetails($listing_id);
+        return $this->Listing->getListingsDetails($listing_id);
     }
 
     public function editListing($listing_id, $location, $type, $price, $size, $rooms) {

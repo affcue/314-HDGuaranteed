@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <style>
         body {
@@ -37,7 +36,7 @@
 <body>
     <div class="header">
         <div class="buttons">
-            <button onclick="window.location.href='ra/ra_search.php'">Find Agent</button>
+            <button onclick="window.location.href='ra_search.php'">Find Agent</button>
             <button onclick="window.location.href='search_listing.php'">Find Listing</button>
             <div style="margin-right: 10px;"></div> <!-- Spacer -->
             <button onclick="window.location.href='ra_home.php'">Back to Home</button>

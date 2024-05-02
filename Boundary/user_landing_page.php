@@ -49,7 +49,7 @@
 
 <div class="login-container">
     <h2 style="text-align: center;">Welcome!</h2>
-    <a href="buyer/login.php"><button>Login as Buyer</button></a>
+    <a href="buyer/buyer_login.php"><button>Login as Buyer</button></a>
     <a href="seller/seller_login_boundary.php"><button>Login as Seller</button></a>
     <a href="create_user.php"><button>Create New Account</button></a>
 </div>

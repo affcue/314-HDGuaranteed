@@ -30,6 +30,21 @@ class Listing {
         }
     }
 
+    public function getListingsDetails($listing_id) {
+        $sql = "SELECT * FROM listing WHERE listing_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $listing_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows == 1) {
+            return $result->fetch_assoc();
+        } else {
+            // Handle the case where the listing is not found or multiple listings with the same ID exist
+            return null;
+        }
+    }
+    
+
     public function getListingsByRAID($ra_id) {
         $sql = "SELECT * FROM listing WHERE ra_id = ?";
         $stmt = $this->conn->prepare($sql);
