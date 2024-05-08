@@ -1,35 +1,30 @@
 <?php
-session_start(); // Start the session
-
-include('../../Database/db_conn.php');
-include('../../Entity/admin/admin_login_entity.php');
+include '../../Database/db_conn.php';
+include '../../Entity/admin/admin_login_entity.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $adminEntity = new AdminLoginEntity($conn);
+    $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
 
-        $user_id = $adminEntity->validateLogin($username, $password);
+    if ($result->num_rows == 1) {
+        // Authentication successful
+        $row = $result->fetch_assoc();
+        
+        // Store admin_id in session
+        session_start();
+        $_SESSION['admin_id'] = $row['admin_id'];
 
-        if ($user_id) {
-            // Store user_id and username in session
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['username'] = $username;
-            header("Location: ../../Boundary/admin/admin_home.php");
-            exit();
-        } else {
-            $_SESSION['login_error'] = "Invalid username or password";
-            header("Location: ../../Boundary/admin/admin_login_boundary.php");
-            exit();
-        }
-    } else {
-        header("Location: ../../Boundary/admin/admin_login_boundary.php");
+        // Redirect to admin dashboard or any other page
+        header("Location: ../../Boundary/admin/admin_home.php");
         exit();
+    } else {
+        // Authentication failed
+        echo "Invalid username or password.";
     }
-} else {
-    header("Location: ../../Boundary/admin/admin_login_boundary.php");
-    exit();
 }
+
+$conn->close();
 ?>
