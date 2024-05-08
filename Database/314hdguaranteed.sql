@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Apr 26, 2024 at 04:55 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: May 08, 2024 at 09:07 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `314hdguaranteed`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `e-mail` varchar(150) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `contact` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `e-mail`, `username`, `password`, `name`, `contact`) VALUES
+(1, 'admin1@gmail.com', 'admin1', 'password1', 'John Smith', 11223344);
 
 -- --------------------------------------------------------
 
@@ -284,6 +306,26 @@ CREATE TABLE `rating` (
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`rating_id`, `ra_id`, `user_id`, `stars`, `description`) VALUES
+(1, 2, 51, 3, 'fff'),
+(2, 2, 51, 5, 'er actqtatatat'),
+(3, 2, 51, 1, 'bad'),
+(4, 2, 1, 5, 'AMAZIBNG'),
+(5, 2, 1, 3, '11'),
+(6, 1, 52, 4, '11'),
+(7, 1, 52, 1, 'bad'),
+(8, 1, 51, 3, '111'),
+(9, 1, 62, 5, 'wow'),
+(10, 4, 62, 1, 'baaaaaaaad'),
+(11, 2, 51, 2, 'qqqqq'),
+(12, 2, 74, 3, 'jajaja'),
+(30, 1, 55, 5, 'tes3'),
+(31, 1, 55, 5, 'test4');
+
 -- --------------------------------------------------------
 
 --
@@ -415,11 +457,20 @@ INSERT INTO `user` (`user_id`, `e-mail`, `username`, `password`, `name`, `contac
 (97, 'seller47@example.com', 'seller46', 'password46', 'Grayson Seller', 81123456, 'seller'),
 (98, 'seller48@example.com', 'seller47', 'password47', 'Scarlett Seller', 89987654, 'seller'),
 (99, 'seller49@example.com', 'seller48', 'password48', 'Eleanor Seller', 87765432, 'seller'),
-(100, 'seller50@example.com', 'seller49', 'password49', 'Theodore Seller', 82345678, 'seller');
+(100, 'seller50@example.com', 'seller49', 'password49', 'Theodore Seller', 82345678, 'seller'),
+(101, 'admin1@gmail.com', 'admin1', 'password1', 'John Smith', 11223344, 'buyer'),
+(102, 'admin1@gmail.com', 'admin1', '99755674', 'John Smith', 11223344, 'buyer');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD KEY `e-mail` (`e-mail`);
 
 --
 -- Indexes for table `listing`
@@ -462,6 +513,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
@@ -477,13 +534,13 @@ ALTER TABLE `ra`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
