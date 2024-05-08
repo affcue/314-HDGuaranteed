@@ -1,20 +1,29 @@
 <?php
-class BuyerLoginEntity {
-    private $conn;
+require_once("../../Database/db_conn.php");
 
-    public function __construct($conn) {
-        $this->conn = $conn;
+class BuyerEntity {
+    private $conn;
+    private $table_name = "user";
+
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
     public function validateLogin($username, $password) {
-        $sql = "SELECT user_id FROM user WHERE username = ? AND password = ?";
-        $stmt = $this->conn->prepare($sql);
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username = ? AND password = ?";
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
+
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
-            return $row['user_id'];
+            if ($row['purpose'] == 'buyer') {
+                return $row['user_id'];
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

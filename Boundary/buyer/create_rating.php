@@ -1,11 +1,11 @@
 <?php
 session_start();
 include "header.php";
-include "../../Control/seller/create_rating_controller.php";
+include "../../Control/buyer/create_rating_controller.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: seller_login_boundary.php");
+    header("Location: buyer_login_boundary.php");
     exit();
 }
 

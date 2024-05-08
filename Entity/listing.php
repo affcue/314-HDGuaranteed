@@ -116,6 +116,18 @@ class Listing {
         }
     } 
 
+    public function updateViewCount($listing_id) {
+        $sql = "UPDATE listing SET views = views + 1 WHERE listing_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $listing_id);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            return true; // Updated successfully
+        } else {
+            return false; // Failed to update
+        }
+    }
+
     public function searchListing($searchTerm = null, $region = null, $propertyType = null) {
         // Debugging code to verify the type of $this->conn
         if (!$this->conn instanceof mysqli) {
@@ -154,6 +166,70 @@ class Listing {
             echo "No listings found.<br>";
             return array();
         }
+    }
+
+    //Shortlist methods
+    public function createShortlist($listing_id, $user_id) {
+        // Prepare SQL query to insert a new row into the shortlist table
+        $sql = "INSERT INTO shortlist (listing_id, user_id) VALUES (?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $listing_id, $user_id);
+        
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Increment the shortlists count in the listings table
+            $sql_update = "UPDATE listing SET shortlists = shortlists + 1 WHERE listing_id = ?";
+            $stmt_update = $this->conn->prepare($sql_update);
+            $stmt_update->bind_param("i", $listing_id);
+            $stmt_update->execute();
+            
+            return true; // Shortlist created successfully
+        } else {
+            return false; // Failed to create shortlist
+        }
+    }
+    
+    public function removeFromShortlist($listing_id, $user_id) {
+        // Prepare SQL query to delete the row from the shortlist table
+        $sql = "DELETE FROM shortlist WHERE listing_id = ? AND user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $listing_id, $user_id);
+        
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Decrement the shortlists count in the listings table
+            $sql_update = "UPDATE listing SET shortlists = shortlists - 1 WHERE listing_id = ?";
+            $stmt_update = $this->conn->prepare($sql_update);
+            $stmt_update->bind_param("i", $listing_id);
+            $stmt_update->execute();
+            
+            return true; // Shortlist removed successfully
+        } else {
+            return false; // Failed to remove from shortlist
+        }
+    }
+    
+    public function getShortlistedListings($user_id) {
+        $sql = "SELECT * FROM listing INNER JOIN shortlist ON listing.listing_id = shortlist.listing_id WHERE shortlist.user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $listings = array();
+        while ($row = $result->fetch_assoc()) {
+            $listings[] = $row;
+        }
+        return $listings;
+    }
+    
+
+    public function isShortlistedByUser($user_id, $listing_id) {
+        $sql = "SELECT * FROM shortlist WHERE user_id = ? AND listing_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $user_id, $listing_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
     }
 }
 ?>

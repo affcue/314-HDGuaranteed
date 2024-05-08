@@ -24,7 +24,7 @@ if (isset($_GET['ra_id'])) {
 
 require_once("../../Control/ra/ra_view_controller.php");
 
-$controller = new ViewAgentController();
+$controller = new ViewAgentController($conn);
 $agent = $controller->displayAgentInfo($_GET['name']);
 $reviews = $controller->displayAgentReviews($agent['ra_id']);
 

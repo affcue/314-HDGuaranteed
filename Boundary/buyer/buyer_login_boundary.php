@@ -64,7 +64,7 @@
 
 <div class="login-container">
     <h2 style="text-align: center;">Welcome to Buyer Login</h2>
-    <form action="../../Control/ra/ra_login_controller.php" method="POST">
+    <form action="../../Control/buyer/buyer_login_controller.php" method="POST">
         <div class="input-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>

@@ -1,23 +1,33 @@
 <?php
-// Start the session
-session_start();
+session_start(); // Start the session
 
-// Check if the user is logged in, if not redirect to login page
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    // Redirect to login page if not logged in
+    header("Location: ../../Boundary/buyer/buyer_login_boundary.php");
     exit();
 }
 
-// Get the ra_id from the session
-$ra_id = $_SESSION['ra_id'];
+if (!isset($_SESSION['username'])) {
+    // Redirect to login page if not logged in
+    header("Location: ../../Boundary/buyer/buyer_login_boundary.php");
+    exit();
+}
+
+// Retrieve user_id from session
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+// Now you can use $user_id to perform actions or fetch data specific to the logged-in user
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RA Home</title>
+<title>Buyer Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
     body {
@@ -25,11 +35,6 @@ $ra_id = $_SESSION['ra_id'];
         background-color: #f2f2f2;
         margin: 0;
         padding: 0;
-    }
-
-    .buttons {
-        display: flex;
-        gap: 10px;
     }
 
     .container {
@@ -47,6 +52,7 @@ $ra_id = $_SESSION['ra_id'];
     .button-container {
         display: flex;
         gap: 10px;
+        margin-bottom: 20px; /* Space between button sets */
     }
 
     .button-container button {
@@ -64,15 +70,21 @@ $ra_id = $_SESSION['ra_id'];
     .button-container button:hover {
         background-color: #0056b3;
     }
+
+    .small-button {
+        padding: 8px 16px; /* Slightly smaller than other buttons */
+        font-size: 14px; /* Smaller font size */
+    }
 </style>
 </head>
 <body>
-<?php include 'header.php'?>
+<?php include("../buyer/header.php"); ?>
+
 
 <div class="container">
-    <h2 class="title">Welcome to your Buyer Home</h2>
+<h2 class="title">Welcome to your Home, <?php echo htmlspecialchars($username); ?></h2>
     <div class="button-container">
-        <button onclick="window.location.href='my_shortlist.php?ra_id=<?php echo $ra_id; ?>'">My Listings</button>
+        <button onclick="window.location.href='my_shortlist.php'">My Shortlisted Listings</button>
     </div>
 </div>
 
