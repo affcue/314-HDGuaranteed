@@ -1,13 +1,14 @@
 <?php
-require_once("../../Entity/ra/ra_entity.php");
+require_once('../../Database/db_conn.php');
+require_once("../../Entity/ra.php");
 
 class ViewAgentController
 {
     private $entity;
 
-    public function __construct()
+    public function __construct($conn)
     {
-        $this->entity = new RAEntity();
+        $this->entity = new RA($conn);
     }
 
     public function displayAgentInfo($agentName)

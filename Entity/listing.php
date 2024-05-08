@@ -66,6 +66,20 @@ class Listing {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }    
+
+    public function getListingsByUserID($user_id) {
+        $sql = "SELECT * FROM listing WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $listings = array();
+        while ($row = $result->fetch_assoc()) {
+            $listings[] = $row;
+        }
+        return $listings;
+    }
+    
     
     public function getAllListings() {
         $sql = "SELECT * FROM listing";

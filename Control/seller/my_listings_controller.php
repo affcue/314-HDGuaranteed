@@ -1,5 +1,5 @@
 <?php
-require_once('../../Database/config.php');
+require_once('../../Database/db_conn.php');
 require_once('../../Entity/listing.php');
 
 class MyListingsController {
@@ -9,9 +9,9 @@ class MyListingsController {
         $this->conn = $conn;
     }
 
-    public function getAllListingsByRAID($ra_id) {
+    public function getAllListingsByUserID($user_id) {
         $Listing = new Listing($this->conn);
-        return $Listing->getListingsByRAID($ra_id);
+        return $Listing->getListingsByUserID($user_id);
     }
 }
 ?>

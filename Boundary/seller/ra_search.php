@@ -1,10 +1,26 @@
-<!DOCTYPE html>
+<?php
+session_start(); // Start the session
+
+// Check if the seller username is set in the session
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to the seller login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
+if (!isset($_SESSION['username'])) {
+    // Redirect to the seller login page if not logged in
+    header("Location: ../../Boundary/seller/seller_login_boundary.php");
+    exit();
+}
+$username = $_SESSION['username']; // Retrieve username from session
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RA Search</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         .container {
@@ -61,7 +77,7 @@
                 <th>Action</th>
             </tr>
             <?php
-            // Include the RAEntity class
+            // Include the RA class
             include("../../Database/db_conn.php");
             include("../../Entity/ra.php");
 
