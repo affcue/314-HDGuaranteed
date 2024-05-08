@@ -131,7 +131,7 @@ $username = $_SESSION['username']; // Retrieve username from session
                     echo "<td>{$admin['name']}</td>";
                     echo "<td>{$admin['email']}</td>";
                     echo "<td>{$admin['contact']}</td>";
-                    echo "<td><a href='admin_view.php?admin_id={$admin['admin_id']}&name=" . urlencode($admin['name']) . "' class='view-button'>View</a></td>";
+                    echo "<td><a href='view_admin_boundary.php?admin_id={$admin['admin_id']}&name=" . urlencode($admin['name']) . "' class='view-button'>View</a></td>";
 
 
                     echo "</tr>";

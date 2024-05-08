@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Admin</title>
 </head>
+
 <body>
-    <h2>Admin Details</h2>
+    <h1>Admin Details</h1>
     <?php
-    include '../../Database/db_conn.php';
+    // Include the controller to fetch admin details
+    require_once("../../Control/admin/view_admin_controller.php");
 
-    if (isset($_GET['id'])) {
-        $admin_id = $_GET['id'];
+    // Get admin details
+    $adminDetails = getAdminDetails($_GET['admin_id']);
 
-        $sql = "SELECT * FROM admin WHERE admin_id = $admin_id";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            echo "<p><strong>Email:</strong> " . $row['email'] . "</p>";
-            echo "<p><strong>Username:</strong> " . $row['username'] . "</p>";
-            echo "<p><strong>Name:</strong> " . $row['name'] . "</p>";
-            echo "<p><strong>Contact:</strong> " . $row['contact'] . "</p>";
-        } else {
-            echo "Admin not found";
-        }
+    if ($adminDetails) {
+        echo "<p>Admin ID: {$adminDetails['admin_id']}</p>";
+        echo "<p>E-mail: {$adminDetails['e-mail']}</p>";
+        echo "<p>Username: {$adminDetails['username']}</p>";
+        echo "<p>Password: {$adminDetails['password']}</p>";
+        echo "<p>Name: {$adminDetails['name']}</p>";
+        echo "<p>Contact: {$adminDetails['contact']}</p>";
     } else {
-        echo "Invalid request";
+        echo "Admin not found!";
     }
-
-    $conn->close();
     ?>
 </body>
+
 </html>
