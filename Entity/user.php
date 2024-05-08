@@ -20,49 +20,6 @@ class User {
             return false;
         }
     }
-
-    public function searchUsers($searchTerm, $userType) {
-        // Define the table name based on the user type
-        $tableName = "";
-        switch ($userType) {
-            case "admin":
-                $tableName = "admin";
-                break;
-            case "ra":
-                $tableName = "ra";
-                break;
-            case "buyer":
-            case "seller":
-                $tableName = "user";
-                break;
-            default:
-                // Invalid user type
-                return array();
-        }
-    
-        // Prepare and execute the SQL query to search users based on search term and user type
-        $sql = "SELECT * FROM `$tableName` WHERE `e-mail` LIKE ? OR `username` LIKE ? OR `name` LIKE ?";
-        $stmt = $this->conn->prepare($sql);
-        $search = "%{$searchTerm}%";
-        $stmt->bind_param("sss", $search, $search, $search);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        $users = array();
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
-        }
-    
-        return $users;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
 }
 ?>
