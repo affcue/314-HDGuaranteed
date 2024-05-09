@@ -72,7 +72,7 @@ $ra_id = $_SESSION['admin_id'];
 <div class="container">
     <h2 class="title">Welcome to your Admin Home</h2>
     <div class="button-container">
-        <button onclick="window.location.href='user_search_boundary.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">User Search</button>
+        <button onclick="window.location.href='user_search_home.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">User Search</button>
         <button onclick="window.location.href='../ra/search_listing.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Listing Search</button>
         <button onclick="window.location.href='shortlists.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">My Shortlists</button>
         <button onclick="window.location.href='create_user.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Create Account</button>

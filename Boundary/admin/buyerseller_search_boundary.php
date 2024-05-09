@@ -8,7 +8,7 @@ $username = $_SESSION['username']; // Retrieve username from session
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Search</title>
+    <title>Buyer/Seller Search</title>
     
     <!-- Include the provided CSS styles -->
     <style>
@@ -87,7 +87,7 @@ $username = $_SESSION['username']; // Retrieve username from session
 <body>
     <div class="header"> <!-- Header outside of adminmenu-container -->
         <div class="buttons">
-            <button onclick="window.location.href='admin/admin_search_boundary.php'">Find Admin</button>
+            <button onclick="window.location.href='admin/buyerseller_search_boundary.php'">Find Buyer/Seller</button>
             <button onclick="window.location.href='../ra/search_listing.php'">Find Listing</button>
             <div style="margin-right: 10px;"></div> <!-- Spacer -->
             <button onclick="window.location.href='admin_home.php'">Back to Home</button>
@@ -97,10 +97,10 @@ $username = $_SESSION['username']; // Retrieve username from session
     </div>
 
     <div class="adminmenu-container">
-        <h1>Admin Search</h1>
+        <h1>Buyer/Seller Search</h1>
         <form method="POST">
             <label for="search_query">Search:</label>
-            <input type="text" name="search_query" placeholder="Search for admin's name">
+            <input type="text" name="search_query" placeholder="Search for buyer or seller name">
             <button type="submit" name="search">Search</button>
         </form>
 
@@ -113,25 +113,25 @@ $username = $_SESSION['username']; // Retrieve username from session
             </tr>
             <?php
             // Include the RAEntity class
-            include("../../Entity/admin/admin_search_entity.php");
+            include("../../Entity/admin/buyerseller_search_entity.php");
 
             // Create an instance of RAEntity class
-            $adminEntity = new AdminEntity();
+            $buyersellerEntity = new BuyerSellerEntity();
 
             // Get the search query from the form
             $search_query = isset($_POST['search_query']) ? trim($_POST['search_query']) : null;
 
             // Fetch RA data based on the search query
-            $adminData = $adminEntity->fetchAdminData($search_query);
+            $buyersellerData = $buyersellerEntity->fetchBuyerSellerData($search_query);
 
             // Display the search results
-            if (!empty($adminData)) {
-                foreach ($adminData as $admin) {
+            if (!empty($buyersellerData)) {
+                foreach ($buyersellerData as $buyerseller) {
                     echo "<tr>";
-                    echo "<td>{$admin['name']}</td>";
-                    echo "<td>{$admin['email']}</td>";
-                    echo "<td>{$admin['contact']}</td>";
-                    echo "<td><a href='view_admin_boundary.php?admin_id={$admin['admin_id']}&name=" . urlencode($admin['name']) . "' class='view-button'>View</a></td>";
+                    echo "<td>{$buyerseller['name']}</td>";
+                    echo "<td>{$buyerseller['email']}</td>";
+                    echo "<td>{$buyerseller['contact']}</td>";
+                    echo "<td><a href='view_buyerseller_boundary.php?user_id={$buyerseller['user_id']}&name=" . urlencode($buyerseller['name']) . "' class='view-button'>View</a></td>";
 
 
                     echo "</tr>";

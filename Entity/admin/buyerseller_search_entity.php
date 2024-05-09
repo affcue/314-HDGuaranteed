@@ -3,7 +3,7 @@
 // Include db_conn.php
 require_once("../../Database/db_conn.php");
 
-class AdminEntity
+class BuyerSellerEntity
 {
     private $conn;
 
@@ -13,9 +13,9 @@ class AdminEntity
         $this->conn = $conn;
     }
 
-    public function fetchAdminData($search_query = null)
+    public function fetchBuyerSellerData($search_query = null)
     {
-        $sql = "SELECT admin_id, name, `e-mail` AS email, contact FROM admin";
+        $sql = "SELECT user_id, name, `e-mail` AS email, contact FROM user";
 
         if ($search_query) {
             $sql .= " WHERE name LIKE ?";
@@ -40,17 +40,17 @@ class AdminEntity
         $adminData = array();
 
         while ($row = $result->fetch_assoc()) {
-            $adminData[] = $row;
+            $buyersellerData[] = $row;
         }
 
         $stmt->close();
 
-        return $adminData;
+        return $buyersellerData;
     }
 
-    public function fetchAdminByName($adminName)
+    public function fetchBuyerSellerByName($buyersellerName)
     {
-        $sql = "SELECT admin_id, name, email, contact FROM admin WHERE name = ?";
+        $sql = "SELECT user_id, name, email, contact FROM user WHERE name = ?";
 
         $stmt = $this->conn->prepare($sql);
 
@@ -59,7 +59,7 @@ class AdminEntity
             return null;
         }
 
-        $stmt->bind_param("s", $adminName);
+        $stmt->bind_param("s", $buyersellerName);
 
         $stmt->execute();
 
@@ -70,11 +70,11 @@ class AdminEntity
             return null;
         }
 
-        $admin = $result->fetch_assoc();
+        $buyerseller = $result->fetch_assoc();
 
         $stmt->close();
 
-        return $admin;
+        return $buyerseller;
     }
 }
 

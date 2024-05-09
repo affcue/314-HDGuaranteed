@@ -1,3 +1,6 @@
+<?php
+include("../ra/header.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 

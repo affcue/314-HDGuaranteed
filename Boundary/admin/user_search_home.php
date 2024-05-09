@@ -74,8 +74,8 @@ $ra_id = $_SESSION['admin_id'];
     <div class="button-container">
         <button onclick="window.location.href='admin_search_boundary.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Admin</button>
         <button onclick="window.location.href='../ra/ra_search.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">RA</button>
-        <button onclick="window.location.href='buyer_search.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Buyer</button>
-        <button onclick="window.location.href='seller_search.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Seller</button>
+        <button onclick="window.location.href='buyerseller_search_boundary.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Buyer/Seller</button>
+      
       
     </div>
 </div>
