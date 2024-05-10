@@ -61,6 +61,10 @@ if(isset($_GET['listing_id'])) {
                         <button type="submit">Remove from Shortlist</button>
                         </div>
                     </form>
+                    <br>
+                    <div class="buttons">
+                    <button onclick="window.location.href='my_shortlist.php'">My Shortlisted Listings</button>
+                    </div>
                 <?php else: ?>
                     <form action="../../Control/buyer/create_shortlist_controller.php" method="post">
                         <input type="hidden" name="listing_id" value="<?php echo $listing_id; ?>">
@@ -81,4 +85,6 @@ if(isset($_GET['listing_id'])) {
 } else {
     echo "<p>Listing ID not provided.</p>";
 }
+
+include 'mortgage_calculator.php'
 ?>
