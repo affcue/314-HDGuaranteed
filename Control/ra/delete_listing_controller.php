@@ -21,12 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['listing_id'])) {
     
     $deleteListingController = new DeleteListingController($conn);
     $success = $deleteListingController->deleteListing($listing_id);
-    
-    if ($success) {
-        $_SESSION['notification'] = "Listing deleted successfully!";
-    } else {
-        $_SESSION['notification'] = "Failed to delete listing.";
-    }
 }
 
 header("Location: ../../Boundary/ra/my_listings.php");

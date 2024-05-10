@@ -65,12 +65,7 @@ if (!isset($_SESSION['ra_id'])) {
 </style>
 </head>
 <body>
-<?php include 'header.php'; 
-    if (isset($_SESSION['notification'])) {
-        echo '<div class="notification">' . $_SESSION['notification'] . '</div>';
-        unset($_SESSION['notification']); // Clear the notification after displaying
-}
-?>
+<?php include 'header.php';?>
 
 <div class="container">
     <h2 class="title">Create New Listing</h2>

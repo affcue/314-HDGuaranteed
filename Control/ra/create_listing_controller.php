@@ -33,12 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $createListingController = new CreateListingController($conn);
     $success = $createListingController->createListing($location, $type, $price, $size, $rooms);
     
-    if ($success) {
-        $_SESSION['notification'] = "Listing created successfully!";
-    } else {
-        $_SESSION['notification'] = "Failed to create listing.";
-    }
-    
     header("Location: ../../Boundary/ra/my_listings.php");
     exit();
 }
