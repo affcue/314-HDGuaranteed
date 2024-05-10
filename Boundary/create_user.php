@@ -69,7 +69,7 @@
 
 <div class="container">
     <h2 class="title">Create Account</h2>
-    <form action="../../Control/admin/create_user_controller.php" method="post">
+    <form action="../../Control/create_user_controller.php" method="post">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
         

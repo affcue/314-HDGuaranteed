@@ -1,25 +1,16 @@
-<?php
-// Start the session
-session_start();
-
-// Check if the user is logged in, if not redirect to login page
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login_boundary.php");
-    exit();
-}
-
-// Get the ra_id from the session
-$admin_id = $_SESSION['admin_id'];
-?>
+<?php // Start the session
+session_start(); 
+include 'header.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RA Home</title>
+<title>Search Profile</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+    /* General styles */
     body {
         font-family: 'Roboto', sans-serif;
         background-color: #f2f2f2;
@@ -69,13 +60,11 @@ $admin_id = $_SESSION['admin_id'];
 <body>
 
 <div class="container">
-    <h2 class="title">Welcome to your Admin Home</h2>
+    <h2 class="title">What kind of user profile are you looking for?</h2>
     <div class="button-container">
-        <button onclick="window.location.href='user_search_home.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">User Search</button>
-        <button onclick="window.location.href='../ra/search_listing.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Listing Search</button>
-        <button onclick="window.location.href='shortlists.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">My Shortlists</button>
-        <button onclick="window.location.href='create_user.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Create Account</button>
-      
+        <button onclick="window.location.href='search_ra_profile.php'">Real Estate Agent Profile</button>
+        <button onclick="window.location.href='search_user_profile.php'">Buyer/Seller Profile</button>
+        <button onclick="window.location.href='search_admin_profile.php'">Admin Profile</button>
     </div>
 </div>
 

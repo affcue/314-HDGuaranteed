@@ -1,5 +1,5 @@
 <?php
-require_once('../../Database/config.php');
+require_once('../../Database/db_conn.php');
 require_once('../../Entity/listing.php');
 
 class MyListingsController {

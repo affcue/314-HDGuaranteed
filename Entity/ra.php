@@ -5,6 +5,21 @@ class RA {
     public function __construct($conn) {
         $this->conn = $conn;
     }
+    
+    public function createRA($email, $username, $password, $name, $contact, $description) {
+        // Prepare and execute the SQL query to insert a new RA into the database
+        $stmt = $this->conn->prepare("INSERT INTO `ra` (`e-mail`, `username`, `password`, `name`, `contact`, `description`) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssis", $email, $username, $password, $name, $contact, $description);
+        
+        // Check if the query executed successfully
+        if ($stmt->execute()) {
+            // RA created successfully
+            return true;
+        } else {
+            // Error occurred while creating RA
+            return false;
+        }
+    }
 
     public function editProfile($ra_id, $email, $username, $password, $name, $contact, $description) {
         $sql = "UPDATE ra SET `e-mail` = ?, username = ?, password = ?, name = ?, contact = ?, description = ? WHERE ra_id = ?";
@@ -13,6 +28,17 @@ class RA {
         $stmt->execute();
         $stmt->close();
     }
+
+    public function updateRA($ra_id, $username, $password) {
+        $sql = "UPDATE ra SET username = ?, password = ? WHERE ra_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssi", $username, $password, $ra_id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }    
 
     public function getProfileDetails($ra_id) {
         $sql = "SELECT * FROM ra WHERE ra_id = ?";
@@ -24,6 +50,20 @@ class RA {
         $stmt->close();
         return $row;
     }
+
+    public function deleteRA($ra_id) {
+        $sql = "DELETE FROM ra WHERE ra_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $ra_id);
+        
+        // Execute the query
+        if ($stmt->execute()) {
+            return true; // Deletion successful
+        } else {
+            return false; // Error occurred during deletion
+        }
+    }
+    
 
     public function searchRA($searchTerm = null) {
         // Base query to select RA
@@ -49,6 +89,32 @@ class RA {
             return array();
         }
     }
+
+    public function searchRAByUsername($username) {
+        // Prepare the SQL statement
+        $sql = "SELECT * FROM ra WHERE username = ?";
+        
+        // Prepare and bind parameters
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        
+        // Execute the query
+        $stmt->execute();
+        
+        // Get the result
+        $result = $stmt->get_result();
+        
+        // Check if any rows were returned
+        if ($result->num_rows > 0) {
+            // Fetch data into an array
+            $ras = $result->fetch_all(MYSQLI_ASSOC);
+            return $ras;
+        } else {
+            // No RA found with the provided username
+            return [];
+        }
+    }
+    
 
     public function getAllRA() {
         $sql = "SELECT * FROM ra";

@@ -17,7 +17,7 @@ $admin_id = $_SESSION['admin_id'];
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RA Home</title>
+<title>Admins Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
     body {
@@ -67,15 +67,11 @@ $admin_id = $_SESSION['admin_id'];
 </style>
 </head>
 <body>
-
+<?php include 'header.php'?>
 <div class="container">
     <h2 class="title">Welcome to your Admin Home</h2>
     <div class="button-container">
-        <button onclick="window.location.href='user_search_home.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">User Search</button>
-        <button onclick="window.location.href='../ra/search_listing.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Listing Search</button>
-        <button onclick="window.location.href='shortlists.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">My Shortlists</button>
-        <button onclick="window.location.href='create_user.php?admin_id=<?php echo $_SESSION['admin_id']; ?>'">Create Account</button>
-      
+        <button onclick="window.location.href='create_account.php'">Create User</button> 
     </div>
 </div>
 
