@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../user_login.php"); // Redirect if user is not logged in
+    header("Location: ../seller_login_boundary.php"); // Redirect if user is not logged in
     exit();
 }
 
 require_once('../../Database/db_conn.php');
-require_once('../../Control/seller/my_listings_controller.php');
+require_once('../../Control/seller/my_listings_seller_controller.php');
 
 $myListingsController = new MyListingsController($conn);
 $user_id = $_SESSION['user_id'];
