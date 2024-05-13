@@ -8,7 +8,7 @@ class Listing {
 
     public function createListing($location, $type, $price, $size, $rooms) {
         // Prepare the SQL query to insert a new listing
-        $sql = "INSERT INTO listing (ra_id, location, type, price, size, rooms) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO listing (ra_id, location, type, price, size, rooms, views, shortlists) VALUES (?, ?, ?, ?, ?, ?, 0, 0)";
     
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
