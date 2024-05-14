@@ -15,7 +15,7 @@ class SearchRAAccountController {
     
 
     public function getAllRA() {
-        return $this->RA->getAllRA();
+        return $this->RA->getAllRAIncludingSuspend();
     }
 
     public function handleSearch($searchTerm) {

@@ -24,21 +24,41 @@ class RA {
     public function editProfile($ra_id, $email, $username, $password, $name, $contact, $description) {
         $sql = "UPDATE ra SET `e-mail` = ?, username = ?, password = ?, name = ?, contact = ?, description = ? WHERE ra_id = ?";
         $stmt = $this->conn->prepare($sql);
+        
+        // Check if the statement was prepared successfully
+        if (!$stmt) {
+            echo "Prepare failed: (" . $this->conn->errno . ") " . $this->conn->error;
+            return false; // Return false to indicate failure
+        }
+        
+        // Bind parameters
         $stmt->bind_param("ssssisi", $email, $username, $password, $name, $contact, $description, $ra_id);
-        $stmt->execute();
-        $stmt->close();
-    }
+        
+        // Execute the query
+        $result = $stmt->execute();
+        
+        // Check if the query was executed successfully
+        if ($result) {
+            $stmt->close();
+            return true; // Return true to indicate success
+        } else {
+            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            $stmt->close();
+            return false; // Return false to indicate failure
+        }
+    }  
 
-    public function updateRA($ra_id, $username, $password) {
-        $sql = "UPDATE ra SET username = ?, password = ? WHERE ra_id = ?";
+    public function updateRaType($ra_id, $type) {
+        $sql = "UPDATE ra SET type = ? WHERE ra_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssi", $username, $password, $ra_id);
+        $stmt->bind_param("si", $type, $ra_id);
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
-    }    
+    }
+    
 
     public function getProfileDetails($ra_id) {
         $sql = "SELECT * FROM ra WHERE ra_id = ?";
@@ -67,7 +87,7 @@ class RA {
 
     public function searchRA($searchTerm = null) {
         // Base query to select RA
-        $query = "SELECT * FROM ra WHERE 1";
+        $query = "SELECT * FROM ra WHERE type = 'active'";
 
         // Add conditions based on search term
         if ($searchTerm) {
@@ -117,6 +137,21 @@ class RA {
     
 
     public function getAllRA() {
+        $sql = "SELECT * FROM ra WHERE type = 'active'";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $ras = [];
+            while ($row = $result->fetch_assoc()) {
+                $ras[] = $row;
+            }
+            return $ras;
+        } else {
+            return [];
+        }
+    }
+
+    public function getAllRAIncludingSuspend() {
         $sql = "SELECT * FROM ra";
         $result = $this->conn->query($sql);
 

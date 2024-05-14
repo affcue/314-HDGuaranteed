@@ -32,7 +32,19 @@ if(isset($_GET['ra_id'])) {
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" value="<?php echo $ra['username']; ?>"><br>
             <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" value="<?php echo $ra['password']; ?>"><br><br>
+            <input type="password" id="password" name="password" value="<?php echo $ra['password']; ?>"><br>
+            <!-- Add fields for other attributes -->
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" value="<?php echo $ra['e-mail']; ?>"><br>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="<?php echo $ra['name']; ?>"><br>
+            <label for="contact">Contact:</label><br>
+            <input type="text" id="contact" name="contact" value="<?php echo $ra['contact']; ?>"><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description"><?php echo $ra['description']; ?></textarea><br>
+            <!-- Type field will not be editable -->
+            <input type="hidden" name="type" value="<?php echo $ra['type']; ?>">
+            <br><br>
             <input type="submit" value="Save Changes">
         </form>
     </div>

@@ -79,7 +79,12 @@ if(isset($ras) && !empty($ras)) {
                         <tr>
                             <th>Username</th>
                             <th>Password</th>
-                            <th></th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +92,11 @@ if(isset($ras) && !empty($ras)) {
                             <tr>
                                 <td><?php echo $ra['username']; ?></td>
                                 <td><?php echo $ra['password']; ?></td>
+                                <td><?php echo $ra['e-mail']; ?></td>
+                                <td><?php echo $ra['name']; ?></td>
+                                <td><?php echo $ra['contact']; ?></td>
+                                <td><?php echo $ra['description']; ?></td>
+                                <td><?php echo $ra['type']; ?></td>
                                 <td><a href="view_ra_account.php?ra_id=<?php echo $ra['ra_id']; ?>" class="btn btn-primary">View</a></td>
                             </tr>
                         <?php endforeach; ?>

@@ -1,6 +1,7 @@
 <?php
 // Start the session
 session_start();
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +64,7 @@ session_start();
     <h2 class="title">What kind of user would you like to create?</h2>
     <div class="button-container">
             <button onclick="window.location.href='create_ra_account.php'">Create RA</button> 
-            <button onclick="window.location.href='create_user_account.php'">Create Buyer/Seller</button> 
-            <button onclick="window.location.href='create_admin_account.php'">Create Admin</button> 
+            <button onclick="window.location.href='create_user_account.php'">Create User</button> 
     </div>
 </div>
 

@@ -1,24 +1,22 @@
 <?php
 include "header.php";
-include "../../Control/sys_admin/edit_user_account_controller.php";
+include "../../Control/sys_admin/edit_ra_profile_controller.php";
 
-$editUserAccountController = new EditUserAccountController($conn);
-
-// Check if a user ID is provided in the URL
-if(isset($_GET['user_id'])) {
-    // Retrieve the user details using the provided user ID
-    $user_id = $_GET['user_id'];
-    $user = $editUserAccountController->getUserByID($user_id);
+// Check if an RA ID is provided in the URL
+if(isset($_GET['ra_id'])) {
+    // Retrieve the RA details using the provided RA ID
+    $ra_id = $_GET['ra_id'];
+    $ra = $editRAProfileController->getRAByRAID($ra_id);
     
-    // Check if the user exists
-    if($user) {
+    // Check if the RA exists
+    if($ra) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User Account</title>
+    <title>Edit RA Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* General styles */
@@ -37,7 +35,6 @@ if(isset($_GET['user_id'])) {
 
         .title {
             margin-left: 20px;
-            text-align: center;
         }
 
         /* Form styles */
@@ -57,7 +54,7 @@ if(isset($_GET['user_id'])) {
             margin-bottom: 10px;
         }
 
-        input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
+        select {
             width: calc(100% - 16px); /* Adjust for padding */
             padding: 8px;
             border: 1px solid #ccc;
@@ -83,31 +80,24 @@ if(isset($_GET['user_id'])) {
 </head>
 <body>
     <div class="container">
-        <h2 class="title">Edit User Account</h2>
-        <form action="../../Control/sys_admin/edit_user_account_controller.php" method="post">
-            <?php if(isset($user_id)): ?>
-                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-            <?php endif; ?>
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" value="<?php echo $user['password']; ?>"><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" value="<?php echo $user['e-mail']; ?>"><br>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" value="<?php echo $user['name']; ?>"><br>
-            <label for="contact">Contact:</label><br>
-            <input type="text" id="contact" name="contact" value="<?php echo $user['contact']; ?>"><br>
-            <input type="submit" name="submit" value="Save Changes">
+        <h2 class="title">Edit RA Profile</h2>
+        <form action="../../Control/sys_admin/edit_ra_profile_controller.php" method="post">
+            <input type="hidden" name="ra_id" value="<?php echo $ra['ra_id']; ?>">
+            <label for="type">Type:</label><br>
+            <select name="type" id="type">
+                <option value="active" <?php if ($ra['type'] == 'active') echo 'selected'; ?>>Active</option>
+                <option value="suspended" <?php if ($ra['type'] == 'suspended') echo 'selected'; ?>>Suspended</option>
+            </select><br><br>
+            <input type="submit" value="Save Changes">
         </form>
     </div>
 </body>
 </html>
 <?php
     } else {
-        echo "<p>User account not found.</p>";
+        echo "<p>RA account not found.</p>";
     }
 } else {
-    echo "<p>User ID not provided.</p>";
+    echo "<p>RA ID not provided.</p>";
 }
 ?>

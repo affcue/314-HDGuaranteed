@@ -56,10 +56,16 @@ if(isset($_GET['user_id'])) {
         <div class="user-details">
             <p><strong>Username:</strong> <?php echo $user['username']; ?></p>
             <p><strong>Password:</strong> <?php echo $user['password']; ?></p>
+            <p><strong>Email:</strong> <?php echo $user['e-mail']; ?></p>
+            <p><strong>Name:</strong> <?php echo $user['name']; ?></p>
+            <p><strong>Contact:</strong> <?php echo $user['contact']; ?></p>
+            <p><strong>Purpose:</strong> <?php echo $user['purpose']; ?></p>
             <!-- Add more user details here -->
         </div>
         <div class="button-container">
-            <a href="edit_user_account.php?user_id=<?php echo $user_id; ?>" class="btn btn-primary">Edit</a>
+            <a href="edit_user_account.php?user_id=<?php echo $user_id; ?>" class="btn btn-primary">Edit Account</a>
+            <a href="edit_user_profile.php?user_id=<?php echo $user_id; ?>" class="btn btn-primary">Edit Profile</a>
+            <a href="../../Control/sys_admin/update_to_ra_controller.php?user_id=<?php echo $user_id; ?>" class="btn btn-primary">Change to RA Account</a> 
             <form action="../../Control/sys_admin/delete_user_account_controller.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                 <button type="submit" class="btn btn-danger">Delete</button>

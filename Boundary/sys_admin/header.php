@@ -36,8 +36,7 @@
 <body>
     <div class="header">
         <div class="buttons">
-            <button onclick="window.location.href='search_account.php'">Manage User Accounts</button>
-            <button onclick="window.location.href='search_profile.php'">Manage User Profiles</button>
+            <button onclick="window.location.href='search_account.php'">Manage Users</button>
             <div style="margin-right: 10px;"></div> <!-- Spacer -->
             <button onclick="window.location.href='admin_home.php'">Back to Home</button>
             <button onclick="window.location.href='logout.php'">Logout</button>

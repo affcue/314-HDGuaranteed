@@ -4,8 +4,6 @@ require_once('../../Entity/ra/ra_login_entity.php');
 
 class RALoginController {
     private $conn;
-    public $username;
-    public $password;
 
     public function __construct($conn) {
         $this->conn = $conn;

@@ -4,7 +4,7 @@ session_start();
 require_once('../../Control/ra/logout_controller.php');
 
 $logoutController = new LogoutController();
-$logoutController->logout();
+$logoutController->logout();    
 ?>
 
 <!DOCTYPE html>

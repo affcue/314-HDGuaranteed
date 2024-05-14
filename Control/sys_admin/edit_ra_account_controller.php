@@ -13,11 +13,11 @@ class EditRAAccountController {
         return $this->RA->getRAByRAID($ra_id);
     }
 
-    public function updateRA($ra_id, $username, $password) {
-        // Check if RA ID, username, and password are provided
-        if ($ra_id && $username && $password) {
+    public function updateRA($ra_id, $username, $password, $email, $name, $contact, $description) {
+        // Check if RA ID, username, password, email, name, contact, and description are provided
+        if ($ra_id && $username && $password && $email && $name && $contact && $description) {
             // Update RA account details
-            return $this->RA->updateRA($ra_id, $username, $password);
+            return $this->RA->editProfile($ra_id, $email, $username, $password, $name, $contact, $description);
         } else {
             // Handle missing parameters
             return false;
@@ -33,9 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ra_id = $_POST['ra_id'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $contact = $_POST['contact'];
+    $description = $_POST['description'];
 
     // Update RA account
-    if ($editRAAccountController->updateRA($ra_id, $username, $password)) {
+    if ($editRAAccountController->updateRA($ra_id, $username, $password, $email, $name, $contact, $description)) {
         // Redirect to a success page
         header("Location: ../../Boundary/sys_admin/search_ra_account.php");
         exit();

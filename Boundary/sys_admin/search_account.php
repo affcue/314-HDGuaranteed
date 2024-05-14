@@ -63,8 +63,7 @@ include 'header.php';?>
     <h2 class="title">What kind of user account are you looking for?</h2>
     <div class="button-container">
         <button onclick="window.location.href='search_ra_account.php'">Real Estate Agent Account</button>
-        <button onclick="window.location.href='search_user_account.php'">Buyer/Seller Account</button>
-        <button onclick="window.location.href='search_admin_account.php'">Admin Account</button>
+        <button onclick="window.location.href='search_user_account.php'">User Account</button>
     </div>
 </div>
 

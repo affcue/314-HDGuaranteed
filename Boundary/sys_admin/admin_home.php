@@ -3,13 +3,13 @@
 session_start();
 
 // Check if the user is logged in, if not redirect to login page
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login_boundary.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: admin_login.php");
     exit();
 }
 
 // Get the ra_id from the session
-$admin_id = $_SESSION['admin_id'];
+$user_id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>

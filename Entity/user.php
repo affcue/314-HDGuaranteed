@@ -75,15 +75,30 @@ class User {
         }
     }
 
-    public function updateUser($user_id, $username, $password) {
-        $sql = "UPDATE user SET username = ?, password = ? WHERE user_id = ?";
+    public function updateUser($user_id, $username, $password, $email, $name, $contact) {
+        $sql = "UPDATE user SET username = ?, password = ?, `e-mail` = ?, name = ?, contact = ? WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssi", $username, $password, $user_id);
+        $stmt->bind_param("ssssii", $username, $password, $email, $name, $contact, $user_id);
         if($stmt->execute()) {
             // Return true if update is successful
             return true;
         } else {
             // Return false if update fails
+            return false;
+        }
+    }
+    
+    public function updateUserProfile($user_id, $purpose) {
+        $sql = "UPDATE user SET purpose = ? WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("si", $purpose, $user_id);
+        
+        if($stmt->execute()) {
+            // Return true if update is successful
+            return true;
+        } else {
+            // Return false if update fails
+            echo "Error: " . $this->conn->error; // Display the error message
             return false;
         }
     }

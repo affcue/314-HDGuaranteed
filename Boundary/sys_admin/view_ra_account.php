@@ -56,15 +56,21 @@ if(isset($_GET['ra_id'])) {
         <div class="ra-details">
             <p><strong>Username:</strong> <?php echo $ra['username']; ?></p>
             <p><strong>Password:</strong> <?php echo $ra['password']; ?></p>
+            <p><strong>Email:</strong> <?php echo $ra['e-mail']; ?></p>
+            <p><strong>Name:</strong> <?php echo $ra['name']; ?></p>
+            <p><strong>Contact:</strong> <?php echo $ra['contact']; ?></p>
+            <p><strong>Description:</strong> <?php echo $ra['description']; ?></p>
+            <p><strong>Type:</strong> <?php echo $ra['type']; ?></p>
         </div>
         <div class="button-container">
-         <a href="edit_ra_account.php?ra_id=<?php echo $ra_id; ?>" class="btn btn-primary">Edit</a>
-         <form action="../../Control/sys_admin/delete_ra_account_controller.php" method="post">
-        <input type="hidden" name="ra_id" value="<?php echo $ra['ra_id']; ?>">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
-</div>
-
+            <a href="edit_ra_account.php?ra_id=<?php echo $ra_id; ?>" class="btn btn-primary">Edit Account</a>
+            <a href="edit_ra_profile.php?ra_id=<?php echo $ra_id; ?>" class="btn btn-primary">Edit Profile</a>
+            <a href="../../Control/sys_admin/update_to_user_controller.php?ra_id=<?php echo $ra_id; ?>" class="btn btn-primary">Change to User Account</a> 
+            <form action="../../Control/sys_admin/delete_ra_account_controller.php" method="post">
+                <input type="hidden" name="ra_id" value="<?php echo $ra['ra_id']; ?>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

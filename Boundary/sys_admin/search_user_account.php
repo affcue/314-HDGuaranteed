@@ -13,14 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     // If form is not submitted, fetch full list of users
     $users = $searchUserController->getAllUsers(); // No search term provided, so it fetches all users
 }
-
-// Debugging code to verify the contents of $users
-if(isset($users) && !empty($users)) {
-    // Debugging code to verify the contents of $users
-    ;
-} else {
-    echo "<p>No user found.</p>";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,23 +63,35 @@ if(isset($users) && !empty($users)) {
                 <button type="submit" name="submit">Search</button>
             </form>
             <br>
+        </div>
         <!-- Display users if available -->
         <?php if(isset($users) && !empty($users)): ?>
             <div class="users">
                 <table>
                     <thead>
                         <tr>
+                            <th>User ID</th>
+                            <th>Email</th>
                             <th>Username</th>
                             <th>Password</th>
-                            <th></th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Purpose</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($users as $user): ?>
                             <tr>
+                                <td><?php echo $user['user_id']; ?></td>
+                                <td><?php echo $user['e-mail']; ?></td>
                                 <td><?php echo $user['username']; ?></td>
                                 <td><?php echo $user['password']; ?></td>
-                                <td><a href="view_user_account.php?user_id=<?php echo $user['user_id']; ?>" class="btn btn-primary">View</a></td>                            </tr>
+                                <td><?php echo $user['name']; ?></td>
+                                <td><?php echo $user['contact']; ?></td>
+                                <td><?php echo $user['purpose']; ?></td>
+                                <td><a href="view_user_account.php?user_id=<?php echo $user['user_id']; ?>" class="btn btn-primary">View</a></td>                            
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

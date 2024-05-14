@@ -1,3 +1,4 @@
+<?php include 'header.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +90,7 @@
         <select id="purpose" name="purpose" required>
             <option value="buyer">Buying</option>
             <option value="seller">Selling</option>
+            <option value="admin">Administrator</option>
         </select>
 
         <input type="submit" value="Create Account">
