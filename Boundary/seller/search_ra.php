@@ -67,7 +67,7 @@ if(isset($ras) && !empty($ras)) {
         <h2 class="title">Search RA</h2>
         <div class="search-bar">
             <form method="POST" action="">
-                <input type="text" name="search" placeholder="Search by username...">
+                <input type="text" name="search" placeholder="Search by name...">
                 <button type="submit" name="submit">Search</button>
             </form>
             <br>
