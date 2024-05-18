@@ -23,14 +23,7 @@ class RA {
 
     public function editProfile($ra_id, $email, $username, $password, $name, $contact, $description) {
         $sql = "UPDATE ra SET `e-mail` = ?, username = ?, password = ?, name = ?, contact = ?, description = ? WHERE ra_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        
-        // Check if the statement was prepared successfully
-        if (!$stmt) {
-            echo "Prepare failed: (" . $this->conn->errno . ") " . $this->conn->error;
-            return false; // Return false to indicate failure
-        }
-        
+        $stmt = $this->conn->prepare($sql);        
         // Bind parameters
         $stmt->bind_param("ssssisi", $email, $username, $password, $name, $contact, $description, $ra_id);
         
@@ -42,7 +35,6 @@ class RA {
             $stmt->close();
             return true; // Return true to indicate success
         } else {
-            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             $stmt->close();
             return false; // Return false to indicate failure
         }
@@ -178,75 +170,6 @@ class RA {
             // Handle the case where the RA is not found or multiple RAs with the same ID exist
             return null;
         }
-    }
-    
-
-    //Old code
-    public function fetchRAData($search_query = null)
-    {
-        $sql = "SELECT * FROM ra";
-
-        if ($search_query) {
-            $sql .= " WHERE name LIKE ?";
-            $search_query = "%" . $search_query . "%";
-        }
-
-        $stmt = $this->conn->prepare($sql);
-
-        if ($search_query) {
-            $stmt->bind_param('s', $search_query);
-        }
-
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        $raData = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $raData[] = $row;
-        }
-
-        return $raData;
-    }
-
-    public function fetchAgentByName($agentName)
-    {
-        $sql = "SELECT * FROM ra WHERE name = ?";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $agentName);
-
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        $agent = $result->fetch_assoc();
-
-        $stmt->close();
-
-        return $agent;
-    }
-
-    public function fetchAgentReviews($raId)
-    {
-        $sql = "SELECT description, user_id, stars FROM rating WHERE ra_id = ?";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $raId);
-
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        $reviews = array();
-        while ($row = $result->fetch_assoc()) {
-            $reviews[] = $row;
-        }
-
-        $stmt->close();
-
-        return $reviews;
     }
 }
 

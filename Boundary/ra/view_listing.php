@@ -48,7 +48,5 @@ if(isset($_GET['listing_id'])) {
     } else {
         echo "<p>Listing not found.</p>";
     }
-} else {
-    echo "<p>Listing ID not provided.</p>";
 }
 ?>

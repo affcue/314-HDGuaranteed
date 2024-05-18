@@ -11,10 +11,6 @@ class Listing {
         $sql = "INSERT INTO listing (ra_id, location, type, price, size, rooms, views, shortlists) VALUES (?, ?, ?, ?, ?, ?, 0, 0)";
     
         $stmt = $this->conn->prepare($sql);
-        if (!$stmt) {
-            echo "Error preparing statement: " . $this->conn->error;
-            return false;
-        }
     
         // Get RA ID from session
         $ra_id = $_SESSION['ra_id'];
@@ -24,8 +20,6 @@ class Listing {
         if ($stmt->execute()) {
             return true; // Listing created successfully
         } else {
-            // Handle errors
-            echo "Error executing statement: " . $stmt->error;
             return false; // Failed to create listing
         }
     }
@@ -64,7 +58,12 @@ class Listing {
         $stmt->bind_param("i", $listing_id);
         $stmt->execute();
         $result = $stmt->get_result();
+        if ($result->num_rows == 1) {
         return $result->fetch_assoc();
+        } else {
+            // Handle the case where the listing is not found or multiple listings with the same ID exist
+            return null;
+        }
     }    
 
     public function getListingsByUserID($user_id) {
@@ -100,7 +99,17 @@ class Listing {
         $sql = "UPDATE listing SET location = ?, type = ?, price = ?, size = ?, rooms = ? WHERE listing_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ssdiii", $location, $type, $price, $size, $rooms, $listing_id);
-        return $stmt->execute();
+        // Execute the query
+        $result = $stmt->execute();
+        
+        // Check if the query was executed successfully
+        if ($result) {
+            $stmt->close();
+            return true; // Return true to indicate success
+        } else {
+            $stmt->close();
+            return false; // Return false to indicate failure
+        }
     }
 
     public function deleteListing($listing_id) {
@@ -128,12 +137,7 @@ class Listing {
         }
     }
 
-    public function searchListing($searchTerm = null, $region = null, $propertyType = null) {
-        // Debugging code to verify the type of $this->conn
-        if (!$this->conn instanceof mysqli) {
-            throw new Exception("Invalid database connection object.");
-        }
-    
+    public function searchListing($searchTerm = null) {
         // Base query to select listings
         $query = "SELECT * FROM listing WHERE 1";
     
@@ -141,14 +145,6 @@ class Listing {
         if ($searchTerm) {
             $query .= " AND location LIKE '%$searchTerm%'";
         }
-        /*
-        if ($region) {
-            $query .= " AND region = '$region'";
-        }
-        if ($propertyType) {
-            $query .= " AND type = '$propertyType'";
-        }
-        */
         // Execute the query using the provided connection
         $result = $this->conn->query($query);
 

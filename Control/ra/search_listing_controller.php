@@ -9,8 +9,8 @@ class SearchListingController {
         $this->Listing = new Listing($conn);
     }
 
-    public function searchListings($searchTerm = null, $filter = null, $filterValue = null) {
-        return $this->Listing->searchListing($searchTerm, $filter, $filterValue);
+    public function searchListings($searchTerm = null, ) {
+        return $this->Listing->searchListing($searchTerm);
     }
 
     public function getAllListings() {

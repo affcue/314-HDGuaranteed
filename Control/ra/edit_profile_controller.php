@@ -24,8 +24,10 @@ class EditProfileController {
             $description = $_POST['description'];
 
             $this->ra_controller->editProfile($ra_id, $email, $username, $password, $name, $contact, $description);
-            header("Location: ../../Boundary/ra/edit_profile_success.php");
+            if(true)
+            {header("Location: ../../Boundary/ra/edit_profile_success.php");
             exit();
+            } else echo "Execute failed" ;
         }
     }
 }

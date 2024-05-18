@@ -43,7 +43,5 @@ if(isset($_GET['ra_id'])) {
     } else {
         echo "<p>RA not found.</p>";
     }
-} else {
-    echo "<p>RA ID not provided.</p>";
 }
 ?>

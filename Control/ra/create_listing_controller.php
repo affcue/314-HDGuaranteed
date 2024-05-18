@@ -19,6 +19,7 @@ class CreateListingController {
         } else {
             // Handle the case where ra_id is not set
             return false;
+            echo "Error creating listing ";
         }
     }
 }

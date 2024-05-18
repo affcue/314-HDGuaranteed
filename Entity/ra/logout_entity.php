@@ -6,6 +6,7 @@ class LogoutEntity {
 
         // Destroy the session
         session_destroy();
+        return true;
     }
 }
 ?>

@@ -21,8 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['listing_id'])) {
     
     $deleteListingController = new DeleteListingController($conn);
     $success = $deleteListingController->deleteListing($listing_id);
+    if ($success) {
+        header("Location: ../../Boundary/ra/my_listings.php?message=success");
+        exit();
+    } else {
+        header("Location: ../../Boundary/ra/my_listings.php?message=error");
+        exit();
+    }
 }
 
-header("Location: ../../Boundary/ra/my_listings.php");
-exit();
+
 ?>

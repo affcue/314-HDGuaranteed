@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
+$overallRating;
+$ratings;
 
 // Retrieve RA ID from URL
 if (isset($_GET['ra_id'])) {

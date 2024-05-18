@@ -5,6 +5,7 @@ class LogoutController {
     public function logout() {
         $logoutEntity = new LogoutEntity();
         $logoutEntity->endSession();
+        return true;
     }
 }
 ?>
