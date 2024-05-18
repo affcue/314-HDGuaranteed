@@ -1,0 +1,47 @@
+# Select image from https://hub.docker.com/_/php/
+#image: registry.gitlab.com/pnisa/314-hdguaranteed:latest
+image: php:7.2
+
+before_script:
+  - sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list
+  - sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list
+  - sed -i '/stretch-updates/s/^/#/' /etc/apt/sources.list
+  - apt-get update -yqq
+  - apt-get install git -yqq
+  # Install PHP extensions
+  - docker-php-ext-install pdo_mysql
+  # Install and run Composer
+  - curl -sS https://getcomposer.org/installer | php
+  - mv composer.phar /usr/local/bin/composer
+  - composer install
+  - curl --location --output /usr/local/bin/phpunit "https://phar.phpunit.de/phpunit-7.2.phar"
+  - chmod +x /usr/local/bin/phpunit
+
+# Bring in any services we need https://docs.gitlab.com/ee/ci/services/index.html
+# See http://docs.gitlab.com/ee/ci/services/README.html for examples.
+services:
+  - mysql:5.7
+
+# Set any variables we need
+variables:
+  # Configure mysql environment variables (https://hub.docker.com/r/_/mysql/)
+  MYSQL_DATABASE: 314hdguaranteed
+  MYSQL_ROOT_PASSWORD: ''
+
+# Run our tests
+# If Xdebug was installed you can generate a coverage report and see code coverage metrics.
+test:app:
+  script:
+    - phpunit --configuration phpunit.xml
+
+deploy:
+  stage: deploy
+  image: registry.gitlab.com/pnisa/314-hdguaranteed:latest
+  script:
+    - php vendor deploy prod --revision="${CI_COMMIT_SHA}" 
+  only:
+    - master
+  when: on_success
+
+
+
