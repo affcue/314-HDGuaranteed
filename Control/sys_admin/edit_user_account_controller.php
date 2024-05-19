@@ -16,7 +16,8 @@ class EditUserAccountController {
     }
 
     public function updateUser($user_id, $username, $password, $email, $name, $contact) {
-        // Prepare the SQL statement
+        $this->user->updateUser($user_id, $username, $password, $email, $name, $contact);
+
         $sql = "UPDATE user SET username = ?, password = ?, `e-mail` = ?, name = ?, contact = ? WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sssssi", $username, $password, $email, $name, $contact, $user_id); // Bind parameters
