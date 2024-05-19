@@ -435,7 +435,34 @@ INSERT INTO `user` (`user_id`, `e-mail`, `username`, `password`, `name`, `contac
 (99, 'seller49@example.com', 'seller48', 'password48', 'Eleanor Seller', 87765432, 'seller'),
 (100, 'seller50@example.com', 'seller49', 'password49', 'Theodore Seller', 82345678, 'seller'),
 (101, 'admin1@example.com', 'admin0', 'password0', 'Joe Admin', 97936903, 'admin'),
-(116, 'admin2@example.com', 'admin1', 'password1', 'Nisa Admin', 87964721, 'admin');
+(116, 'admin2@example.com', 'admin1', 'password1', 'Nisa Admin', 87964721, 'admin'),
+(117, 'admin3@example.com', 'admin2', 'password2', 'Liam Admin', 78912345, 'admin'),
+(118, 'admin4@example.com', 'admin3', 'password3', 'Emma Admin', 65478912, 'admin'),
+(119, 'admin5@example.com', 'admin4', 'password4', 'Noah Admin', 98765432, 'admin'),
+(120, 'admin6@example.com', 'admin5', 'password5', 'Olivia Admin', 54321678, 'admin'),
+(121, 'admin7@example.com', 'admin6', 'password6', 'William Admin', 78945612, 'admin'),
+(122, 'admin8@example.com', 'admin7', 'password7', 'Ava Admin', 65432189, 'admin'),
+(123, 'admin9@example.com', 'admin8', 'password8', 'James Admin', 98712365, 'admin'),
+(124, 'admin10@example.com', 'admin9', 'password9', 'Sophia Admin', 54398721, 'admin'),
+(125, 'admin11@example.com', 'admin10', 'password10', 'Benjamin Admin', 78965432, 'admin'),
+(126, 'admin12@example.com', 'admin11', 'password11', 'Isabella Admin', 65498732, 'admin'),
+(127, 'admin13@example.com', 'admin12', 'password12', 'Lucas Admin', 98732165, 'admin'),
+(128, 'admin14@example.com', 'admin13', 'password13', 'Mia Admin', 54321689, 'admin'),
+(129, 'admin15@example.com', 'admin14', 'password14', 'Henry Admin', 78945678, 'admin'),
+(130, 'admin16@example.com', 'admin15', 'password15', 'Amelia Admin', 65412389, 'admin'),
+(131, 'admin17@example.com', 'admin16', 'password16', 'Alexander Admin', 98765478, 'admin'),
+(132, 'admin18@example.com', 'admin17', 'password17', 'Harper Admin', 54398765, 'admin'),
+(133, 'admin19@example.com', 'admin18', 'password18', 'Ethan Admin', 78932145, 'admin'),
+(134, 'admin20@example.com', 'admin19', 'password19', 'Evelyn Admin', 65478965, 'admin'),
+(135, 'admin21@example.com', 'admin20', 'password20', 'Jacob Admin', 98712378, 'admin'),
+(136, 'admin22@example.com', 'admin21', 'password21', 'Abigail Admin', 54321645, 'admin'),
+(137, 'admin23@example.com', 'admin22', 'password22', 'Michael Admin', 78965489, 'admin'),
+(138, 'admin24@example.com', 'admin23', 'password23', 'Emily Admin', 65498721, 'admin'),
+(139, 'admin25@example.com', 'admin24', 'password24', 'Daniel Admin', 98732178, 'admin'),
+(140, 'admin26@example.com', 'admin25', 'password25', 'Elizabeth Admin', 54398732, 'admin'),
+(141, 'admin27@example.com', 'admin26', 'password26', 'Matthew Admin', 78945632, 'admin'),
+(142, 'admin28@example.com', 'admin27', 'password27', 'Avery Admin', 65412378, 'admin');
+
 
 --
 -- Indexes for dumped tables
